@@ -1,306 +1,402 @@
 # Signals Catalog
 
-Canonical reference for the `/hypo-generator` skill. All "Buying signal" values in generated hypotheses must come from this catalog.
+> **Where this file lives.** A copy travels with `signal-research` so the skill is self-contained;
+> the same catalogue ships with `hypo-generator`. When you add or retire a signal, keep the ids
+> stable and update both — otherwise a signal id means different things in different skills.
 
-Sources combined:
-- **growth.band/signals-framework** — 15 signals (Dynamic + Static)
-- **Maja Voje Outreach Triggers** — website, hiring, tech stack, events
-- **Buying Triggers Template** — Individual / Account / Persona level (30 total)
+Canonical reference for the `/hypo-generator` skill. Every "Buying signal" value in a generated hypothesis must come from this catalog.
+
+**Architecture (v2, 2026-07-16):**
+- **Universal signals (U01–U34)** — cross-vertical. Fire for any client (SaaS/dev, GIS, AEC, iGaming). This is the kept generic layer.
+- **Vertical packs (V-series)** — industry-specific signals that make a niche ICP non-trivial. First pack shipped: **AEC / construction (V01–V16)** for structural/architecture/BIM outsourcing clients. Add more packs over time (one `## Vertical pack — <name>` section each).
+- **Data points** — static facts, split the same way: Universal (D01–D10) + AEC (DV01–DV15).
+
+**Total: 50 signals (34 U + 16 V) · 25 data points (10 D + 15 DV).**
+
+Sources combined: growth.band signals-framework · Maja Voje outreach triggers · Buying-Triggers template (Individual/Account/Persona) · Trigify companies/news/jobs/tech datasets · field experience in AEC outsourcing.
 
 ---
 
 ## Core dichotomy: Signals vs Data Points
 
-- **Dynamic signals** = time-bound events. Fire for ~3-5% of TAM at any moment. Tell you **when** to reach out. Strongest "trivial trigger" scores. Examples: hired a new SDR, raised a Series A.
-- **Static data points** = facts about current state. Apply to ~100% of TAM. Tell you **what to say**. Weaker for timing but rich for messaging adaptation. Examples: 0 SDRs + 5 AEs, selling to CTOs.
-- **Individual-level signals** = events tied to a specific person, not the company. Often the strongest for LinkedIn outreach. Examples: just changed role, posted on a relevant topic.
+- **Signal** = time-bound event. Fires for ~3–5% of TAM at any moment. Tells you **WHEN** to reach out. Strongest trigger scores.
+- **Data point** = static fact about current state. Applies to ~100% of TAM. Tells you **WHAT to say**. Weak for timing, rich for message adaptation.
+- **Individual-level signal** = event tied to a specific person, not the company. Usually strongest for LinkedIn.
 
-A strong hypothesis uses **one dynamic OR individual signal as the trigger**, plus one static data point to adapt the message.
+A strong hypothesis = **one signal as the trigger** + **one or two data points** to adapt the message.
 
----
-
-## A. Dynamic signals (account-level, timing)
-
-### A1. Hiring for specific roles
-**What it signals:** Investment in a function. Hiring SDRs = building outbound. Hiring devs = scaling product. Hiring CSMs = focus on retention.
-**Best use:** Match the role they're hiring to your offer ("hiring SDRs but no outbound infrastructure yet").
-**Detection:** Clay, Bitscale, Trigify, LinkedIn job posts
-**Trivial-trigger weight:** 4/5
-
-### A2. Recent funding round
-**What it signals:** Fresh budget, board pressure to grow, openness to new vendors. First 3-6 months post-raise = highest receptivity.
-**Best use:** Lead with congrats + pipeline angle ("most companies post-raise prioritize pipeline but don't have the engine to match the ambition").
-**Detection:** Crunchbase, Clay, Bitscale, Trigify
-**Trivial-trigger weight:** 4/5 (high TAM relevance for some ICPs, low for others)
-
-### A3. New decision-maker joined (90-day window)
-**What it signals:** New leaders make changes in their first 90 days. They audit vendors, rethink processes. Most open window in the relationship.
-**Best use:** Address the role directly ("you stepped into VP Sales 6 weeks ago — pipeline is the first thing").
-**Detection:** Trigify, Clay, LinkedIn, Bitscale
-**Trivial-trigger weight:** 5/5
-
-### A4. Tech stack change
-**What it signals:** Adopted new CRM/sales tool. First 6 months = rethinking everything around that tool.
-**Best use:** Position your service as complementary to the new stack ("you started HubSpot recently — most teams rethink their entire lead gen process in the first 6 months").
-**Detection:** BuiltWith, Clay, Bitscale
-**Trivial-trigger weight:** 4/5
-
-### A5. Rapid headcount growth
-**What it signals:** Growing from 20 to 40 people in 6 months. Processes built for 20 break at 40. Need systems and external help.
-**Best use:** "You doubled in 6 months. Teams that grow that fast usually find what worked at 20 ppl breaks at 40 — especially pipeline."
-**Detection:** LinkedIn employee counts, Clay, Bitscale
-**Trivial-trigger weight:** 3/5
-
-### A6. SDR/AE job posting removed (failed-hire signal)
-**What it signals:** Tried to hire for outbound, couldn't find someone or pulled the budget. Need still exists. Hiring approach failed.
-**Best use:** "You were hiring for an SDR last month — listing's gone. What if you could get the pipeline without the headcount?"
-**Detection:** Trigify, Clay (job posting history)
-**Trivial-trigger weight:** 5/5
-
-### A7. Event / conference attendance
-**What it signals:** Attending or sponsoring events = investing in visibility, market-building mode. Open to pipeline conversations.
-**Best use:** "Saw you're sponsoring [Event]. Companies investing in events usually need outbound to maximize lead follow-up."
-**Detection:** LinkedIn posts, Clay, LLM analysis
-**Trivial-trigger weight:** 3/5
-
-### A8. New product / feature launch
-**What it signals:** New market to sell into. Need pipeline for something they haven't sold before. Existing inbound won't cover it.
-**Best use:** "Just saw you launched [product]. New products need pipeline fast — your existing inbound probably won't cover a new segment."
-**Detection:** Bitscale, LLM analysis, LinkedIn announcements, press releases
-**Trivial-trigger weight:** 4/5
-
-### A9. Company expansion to new office/geography
-**What it signals:** Physical expansion = growth + need for local pipeline.
-**Best use:** "You're expanding to [city]. Teams entering new markets usually need 2-3 months to spin up local pipeline."
-**Detection:** LinkedIn (location filter), Crunchbase, Bitscale
-**Trivial-trigger weight:** 4/5
-
-### A10. M&A activity (acquired or merged)
-**What it signals:** New workflows, tools consolidation, organizational change. Often 12-18 months of churn.
-**Best use:** "Post-merger teams usually consolidate tools and rebuild ops. Want to chat about how others have navigated this?"
-**Detection:** Crunchbase, press releases, LinkedIn
-**Trivial-trigger weight:** 4/5
-
-### A11. New client / case study announcement
-**What it signals:** Product is selling well, GTM works — but can be scaled. Confidence-building moment.
-**Best use:** "Saw you landed [Client X]. Amazing — want to amplify it with similar accounts?"
-**Detection:** LinkedIn posts, press releases
-**Trivial-trigger weight:** 3/5
-
-### A12. Layoffs / headcount decrease
-**What it signals:** Financial pressure or restructuring. Either churn risk OR cost-saving play.
-**Best use (cost-saving angle):** "Sorry to see the changes. If you're looking to reduce SDR overhead, we run pipeline as a service."
-**Detection:** Layoffs.fyi, LinkedIn, Trigify
-**Trivial-trigger weight:** 3/5 (sensitive — angle matters)
-
-### A13. Award / recognition
-**What it signals:** They're in the spotlight, often looking to ride momentum.
-**Best use:** "Saw your award. Great time to build on that visibility with outbound to similar accounts."
-**Detection:** LinkedIn, press, Bitscale
-**Trivial-trigger weight:** 2/5
-
-### A14. Strategic partnership / integration announcement
-**What it signals:** Market expansion via partner ecosystem. Complementary product opportunity.
-**Best use:** "Saw your integration with [X]. Let's help you scale activation across that user base."
-**Detection:** LinkedIn, press releases
-**Trivial-trigger weight:** 3/5
-
-### A15. IPO / public listing
-**What it signals:** Enterprise-readiness moment. Heavy compliance, structured GTM, larger budgets.
-**Best use:** "Congrats on the IPO. Want to chat about scaling pipeline to public-market expectations?"
-**Detection:** Public filings, Crunchbase
-**Trivial-trigger weight:** 4/5
-
-### A16. Website messaging change / repositioning
-**What it signals:** Major homepage rewrite, new positioning. Often product or GTM strategy shift.
-**Best use:** "Saw your new positioning around [X]. Curious if outbound has caught up with the new story?"
-**Detection:** Wayback Machine, Bitscale, manual review
-**Trivial-trigger weight:** 2/5
-
-### A17. New regulation in their industry
-**What it signals:** New rules → new way of doing things. Risk-mitigation appetite.
-**Best use:** "[New regulation] hits [date]. Teams in your space usually spend 60 days rebuilding around it — we help with [angle]."
-**Detection:** LLM analysis of industry news
-**Trivial-trigger weight:** 3/5
-
-### A18. New license issued / pre-opening (vertical: regulated retail) (added 2026-07-10, needs validation)
-**What it signals:** A brand-new operator just got (or applied for) an operating license and will open in <6 months. They must buy their entire operational stack from zero before day one. Highest-intent moment in the lifecycle — no incumbent to displace.
-**Best use:** "Congrats on the license. Before you lock in a POS — the #1 thing that trips up new operators in month one is compliance sync. Here's a launch checklist."
-**Detection:** State/regulator public license databases, Cannabiz Media, license-list aggregators, LLM aggregation
-**Trivial-trigger weight:** 5/5 (a new license deterministically needs the operational stack)
-
-### A19. New market / jurisdiction goes live (regulation flip) (added 2026-07-10, needs validation)
-**What it signals:** A whole jurisdiction flips status on a fixed date (e.g., med→adult-use, or a new legal market opening). Every licensed operator in it must re-tool for new volume + new compliance rules against a hard deadline. Time-boxed land-grab.
-**Best use:** "[State] goes adult-use [date]. Med-only stores usually need to re-tool checkout + compliance for the volume jump — here's what changes."
-**Detection:** Regulatory calendars, industry news, state regulator sites, LLM analysis
-**Trivial-trigger weight:** 5/5 (hard deadline, whole-market cohort) — but episodic, not continuous
+**Every run scores signals & data points for FIT against the target ICP** — see `SKILL.md` → Phase 2 (Fit analysis). The catalog is the library; the fit pass picks what actually fits the vertical. For a niche vertical (e.g. structural engineering), generic Universal signals like funding/IPO will score 1–2 and drop out; the AEC pack carries the run.
 
 ---
 
-## B. Static data points (account-level, situation)
+# UNIVERSAL SIGNALS (U01–U34)
 
-### B1. Sales team composition
-**What it signals:** 0 SDRs + 5 AEs = AEs do everything. 1 SDR + 10 AEs = SDR can't keep up. Reveals whether outbound is systematic or ad-hoc.
-**Best use:** "Your 5 AEs handle prospecting to close. That's 40% of their time on pipeline gen instead of selling."
-**Detection:** LinkedIn (filter by title), Clay, Bitscale
-**Best paired with:** A1, A5, A6 as the trigger.
+Cross-vertical. Kept generic on purpose — reused across all of Viktor's clients.
 
-### B2. In-house capability (or lack of)
-**What it signals:** Having 2 in-house recruiters vs. zero = entirely different messaging. Presence/absence of a function changes the angle.
-**Best use (has function):** "Your 2 recruiters handle everything. We'd give them pre-screened candidates so they focus on quality." (lack of):** "No recruitment team? We send 3-5 candidates free to prove fit."
-**Detection:** LinkedIn, Clay, LLM analysis
+## Corporate / account events
 
-### B3. Current tool stack
-**What it signals:** Salesforce = enterprise. HubSpot = mid-market growing. No CRM = early stage. Tools reveal sophistication, budget, gaps.
-**Best use:** "You're running HubSpot + Instantly. Good stack — but who's managing the deliverability layer underneath?"
-**Detection:** BuiltWith, Clay, Bitscale
+### U01. Recent funding round
+**Signals:** fresh budget, board pressure to grow, vendor openness. First 3–6 mo post-raise = peak receptivity.
+**Best use:** congrats + capacity/pipeline angle matched to the new ambition.
+**Detection:** Crunchbase, Clay, PredictLeads, Intellizence · **Window:** 0–90 days · **Trigger weight:** 4/5
+**Fit note:** high for VC-backed SaaS; **low (1–2) for AEC/services** — those firms rarely raise.
 
-### B4. Who they sell to
-**What it signals:** Selling to CTOs = skeptical, research-heavy audience. Selling to CMOs = inbox-flooded. Changes entire outbound approach.
-**Best use:** "Your audience [CTO/CMO/etc.] researches before talking to sales. Only way in is perfect timing."
-**Detection:** LLM analysis of their case studies + ICP, Bitscale, Clay
+### U02. M&A (acquired or merged)
+**Signals:** new workflows, tool consolidation, org churn (12–18 mo).
+**Best use:** "post-merger teams rebuild ops — want to compare notes?"
+**Detection:** Crunchbase, PredictLeads, press · **Window:** 30–90 days · **Trigger weight:** 4/5
 
-### B5. Geographic / team distribution
-**What it signals:** Distributed team = timezone / cost optimization. Nearshore presence = already cost-aware. Reveals operational maturity.
-**Best use:** "Your team is split between [City A] and [City B]. You've optimized engineering cost — have you done the same for pipeline?"
-**Detection:** LinkedIn, Clay, LLM analysis
+### U03. IPO / public listing
+**Signals:** enterprise-readiness moment, compliance, structured GTM, bigger budgets.
+**Detection:** SEC filings, Crunchbase · **Window:** 60–180 days · **Trigger weight:** 4/5
+**Fit note:** low for private services firms.
 
-### B6. Revenue model / ACV indicators
-**What it signals:** Enterprise pricing = high ACV, long cycles. Self-serve = low ACV, volume. ACV determines whether outbound math works.
-**Best use:** "At your price point, one closed deal covers the entire outbound campaign. The math: [N] meetings × your close rate = ROI."
-**Detection:** LLM analysis, Bitscale, Clay
+### U04. New office / geographic expansion
+**Signals:** growth + need for local capacity/pipeline.
+**Detection:** LinkedIn location filter, Crunchbase, press · **Window:** 30–90 days · **Trigger weight:** 4/5
 
-### B7. Content / LinkedIn activity level
-**What it signals:** Active poster = marketing-aware. No content = referral/outbound reliant.
-**Best use (active):** "Your LinkedIn is generating engagement. But content is slow — what if outbound ran in parallel?"
-**Detection:** LinkedIn, Exa, Bitscale
+### U05. Rapid headcount growth
+**Signals:** processes built for N break at 2N; systems/external help needed.
+**Detection:** LinkedIn employee counts, Clay · **Window:** rolling · **Trigger weight:** 3/5
 
-### B8. Has structured company description / strong metadata
-**What it signals:** Public-facing maturity, positioning clarity.
-**Best use:** "Saw your team focuses on [XYZ] — we help similar companies [outcome]."
-**Detection:** Clay, Maja Voje pattern from website data
+### U06. Layoffs / headcount decrease
+**Signals:** financial pressure OR restructuring. Churn risk OR cost-saving opening.
+**Best use:** cost-saving angle ("get the output without the headcount").
+**Detection:** Layoffs.fyi, LinkedIn, Trigify · **Window:** 0–60 days · **Trigger weight:** 3/5 (angle-sensitive)
 
-### B9. Ticker available (public company)
-**What it signals:** Listed company → larger budgets, structured GTM, longer cycles.
-**Best use:** Lead with public-company specifics (compliance, scale).
-**Detection:** Clay, Crunchbase
+### U07. New product / service launch
+**Signals:** new market to sell into; need capacity/pipeline fast for something unproven.
+**Detection:** press, Serper, company blog, LinkedIn · **Window:** 14–60 days · **Trigger weight:** 4/5
 
-### B10. Tech stack: competitor tool detected
-**What it signals:** Solving a similar problem with a competitor. Displacement opportunity.
-**Best use:** "Many teams switching from [Competitor] tell us it was too complex/pricey for what they needed."
-**Detection:** BuiltWith, Clay, Bitscale
+### U08. Strategic partnership / integration announced
+**Signals:** ecosystem expansion; complementary opportunity.
+**Detection:** LinkedIn, press · **Window:** 14–60 days · **Trigger weight:** 3/5
 
-### B11. Tech stack: complementary / integration partner detected
-**What it signals:** Easy positioning angle — your tool plugs in.
-**Best use:** "Since you're using HubSpot already, our tool plugs right in — no migration."
-**Detection:** BuiltWith, Clay
+### U09. New client / case-study win announced
+**Signals:** GTM works and can be scaled; confidence moment.
+**Detection:** LinkedIn posts, press · **Window:** 0–45 days · **Trigger weight:** 3/5
 
-### B12. Customer base trajectory (increasing or decreasing)
-**What it signals:** Increasing = double-down opportunity. Decreasing = churn/cashflow angle.
-**Best use:** Mirror the trajectory in the offer framing.
-**Detection:** Press releases, LinkedIn announcements, LLM review
+### U10. Award / recognition (firm)
+**Signals:** in the spotlight, riding momentum.
+**Detection:** LinkedIn, press, Bitscale · **Window:** 0–60 days · **Trigger weight:** 2/5
+
+### U11. Website repositioning / messaging change
+**Signals:** major homepage rewrite → product or GTM strategy shift.
+**Detection:** Wayback Machine, Claygent scrape · **Window:** 30–60 days · **Trigger weight:** 2/5
+
+### U12. New regulation in their industry
+**Signals:** new rules → new way of working; risk-mitigation appetite.
+**Detection:** LLM analysis of industry news · **Window:** deadline-driven · **Trigger weight:** 3/5
+
+### U13. New leadership / C-suite change (account-level)
+**Signals:** new exec = new priorities, vendor audit, "vendor amnesty".
+**Detection:** LinkedIn, Trigify, Clay · **Window:** days 14–90 · **Trigger weight:** 4/5
+
+## Hiring
+
+### U14. Hiring for a specific role (function investment)
+**Signals:** building a function. The role hired = the gap. **Instantiate per vertical:** SDR → outbound; Revit modeler/structural drafter → drafting capacity; ML eng → data maturity.
+**Best use:** match the hired role to your offer ("hiring drafters but PEs still doing CDs").
+**Detection:** LinkedIn Jobs, PredictLeads, Clay, Trigify · **Window:** 14–60 days · **Trigger weight:** 4/5
+
+### U15. Failed hire — role pulled after long open
+**Signals:** tried to hire, couldn't fill or lost budget. Need still exists; the hire path failed.
+**Best use:** "listing's gone — what if you got the output without the headcount?"
+**Detection:** Trigify, Clay (job-posting history) · **Window:** 0–30 days after removal · **Trigger weight:** 5/5
+
+### U16. Hiring surge (5+ open roles)
+**Signals:** funding or high-growth; capacity crunch.
+**Detection:** LinkedIn Jobs, PredictLeads · **Window:** 30–90 days · **Trigger weight:** 3/5
+
+### U17. Job post mentions a specific tool / stack
+**Signals:** confirmed stack → personalize by integration or displacement. **Instantiate per vertical:** HubSpot; Tekla/SDS2/RISA/ETABS/Revit for AEC.
+**Detection:** LinkedIn JD text, TheirStack, Clay · **Window:** while live · **Trigger weight:** 4/5
+
+### U18. Job post uses pain language
+**Signals:** "overtime", "fast-paced", "deadline-driven", "wear many hats", "CD crunch" → capacity pain in their own words.
+**Detection:** LinkedIn JD text, Claygent · **Window:** while live · **Trigger weight:** 4/5
+
+### U19. Repeated repost of the same req
+**Signals:** chronic unfilled need → outsource-ready.
+**Detection:** Trigify, Clay job history · **Window:** rolling · **Trigger weight:** 4/5
+
+## Tech
+
+### U20. New tech adoption (first-seen)
+**Signals:** evolving stack; first 6 mo = rethinking everything around the new tool.
+**Detection:** BuiltWith, TheirStack, HG Insights · **Window:** 30–90 days · **Trigger weight:** 4/5
+
+### U21. Tech stack removal / vendor switch
+**Signals:** vendor churn → active replacement window.
+**Detection:** BuiltWith, HG Insights · **Window:** 0–30 days · **Trigger weight:** 4/5
+
+### U22. Competitor tool detected (displacement)
+**Signals:** solving the same problem with a competitor.
+**Detection:** BuiltWith, Clay · **Window:** near renewal · **Trigger weight:** 3/5
+
+### U23. Complementary / integration partner detected
+**Signals:** easy "plugs right in" angle.
+**Detection:** BuiltWith, Clay · **Window:** rolling · **Trigger weight:** 3/5
+
+## Individual-level (best for LinkedIn)
+
+### U24. Self-authored content — LinkedIn post
+**Signals:** wrote & shared publicly. Strongest relevancy hook.
+**Detection:** LinkedIn, Trigify, Exa · **Difficulty:** Easy · **Trigger weight:** 5/5
+
+### U25. Self-authored — webinar / podcast / article
+**Signals:** hosted or guested in your space.
+**Detection:** search, LinkedIn, podcast platforms · **Difficulty:** Easy
+
+### U26. Engaged content — commented on a relevant post
+**Signals:** active topical interest.
+**Detection:** LinkedIn, Trigify · **Difficulty:** Easy
+
+### U27. Engaged content — liked / shared
+**Signals:** passive interest. Use carefully (easy to over-fire).
+**Detection:** LinkedIn, Trigify · **Difficulty:** Easy
+
+### U28. New to role (last 90 days)
+**Signals:** building credibility, seeking quick wins. Most receptive window.
+**Detection:** LinkedIn, Trigify, LoneScale, Champify · **Difficulty:** Easy · **Trigger weight:** 5/5
+
+### U29. Change of role / internal promotion
+**Signals:** expanded scope, often new budget authority.
+**Detection:** LinkedIn, Trigify · **Difficulty:** Medium
+
+### U30. Self-attributed traits (headline / about / experience)
+**Signals:** what they want to be known for → direct hook.
+**Detection:** LinkedIn, Clay · **Difficulty:** Medium
+
+### U31. Dissatisfaction with current vendor (review left)
+**Signals:** active displacement. Strong but rare/hard at scale.
+**Detection:** G2, Capterra, TrustRadius scrape · **Difficulty:** Hard
+
+### U32. Reverse IP / first-party intent
+**Signals:** anonymously visited your site → active research.
+**Detection:** RB2B, Clearbit Reveal, Snitcher · **Difficulty:** Medium (needs site pixel)
+
+### U33. Award / recognition (individual)
+**Signals:** visibility moment; warm opener.
+**Detection:** LinkedIn, search · **Difficulty:** Easy
+
+### U34. Events — attending / exhibiting (generic)
+**Signals:** market-building mode; reason to reach out.
+**Detection:** LinkedIn posts, event sites, Clay · **Window:** around event date · **Trigger weight:** 3/5
 
 ---
 
-## C. Individual-level signals (person-specific, best for LinkedIn)
+# VERTICAL PACK — AEC / CONSTRUCTION (V01–V16)
 
-### C1. Self-authored content — LinkedIn post
-**What it signals:** They wrote and shared something publicly. Strongest possible relevancy hook.
-**Best use:** "Your post on [topic] last week — the take on [specific point] matched something we're seeing across [their ICP]."
-**Detection:** LinkedIn, Trigify, Exa
-**Difficulty:** Easy
-**Trivial-trigger weight:** 5/5
+For structural / architecture / MEP / BIM outsourcing clients. The **buying trigger for outsourced BIM / drafting / detailing capacity = project pipeline exceeding internal drafting throughput.** Project-flow signals are therefore the core.
 
-### C2. Self-authored content — webinar / podcast
-**What it signals:** Hosted or guested on a webinar/podcast in your space.
-**Best use:** Reference a specific point they made.
-**Detection:** Search engines, LinkedIn, podcast platforms
-**Difficulty:** Easy
+## Project-flow / demand (the core)
 
-### C3. Engaged content — commented on a relevant post
-**What it signals:** Active interest in the topic. Lower commitment than authoring, but signals attention.
-**Best use:** "Saw your comment on [post about X] — your point about [Y] is exactly what we're solving for."
-**Detection:** LinkedIn, Trigify
-**Difficulty:** Easy
+### V01. New project award / contract win (structural scope)
+**Signals:** a firm just won structural scope → drafting/modeling demand incoming. The purest demand pull.
+**Best use:** "congrats on [project] — new awards usually hit the drafting team before you can staff up."
+**Detection:** Dodge, ConstructConnect, ENR project wire, firm press, LinkedIn · **Window:** 0–60 days · **Trigger weight:** 5/5
 
-### C4. Engaged content — liked/shared a relevant post
-**What it signals:** Passive interest signal. Use carefully — easy to over-fire.
-**Detection:** LinkedIn, Trigify
-**Difficulty:** Easy
+### V02. Building permit filed — 10+ story / 150k+ sq ft, firm = SER
+**Signals:** firm named Structural Engineer of Record on a large filing → CD-phase drafting load coming.
+**Best use:** "saw the [address] filing — CDs on a [N]-story usually mean weeks of modeling."
+**Detection:** NYC DOB, Shovels.ai, BuildZoom, county permit portals · **Window:** 0–90 days · **Trigger weight:** 5/5
 
-### C5. New to role (last 90 days)
-**What it signals:** Starting a new position, building credibility, looking for quick wins. Most receptive window.
-**Best use:** "Congrats on the new role. Whenever someone steps into [title], pipeline is usually the first audit."
-**Detection:** LinkedIn, Trigify
-**Difficulty:** Easy
-**Trivial-trigger weight:** 5/5
+### V03. Named EOR on a won public bid / RFP
+**Signals:** public contract award, structural scope, fixed schedule.
+**Detection:** SAM.gov, state/city bid boards, BidNet · **Window:** 0–60 days · **Trigger weight:** 5/5
 
-### C6. Change of role (internal promotion or lateral move)
-**What it signals:** Expanded scope, often new budget authority.
-**Best use:** Match the new responsibilities to your offer.
-**Detection:** LinkedIn, Trigify
-**Difficulty:** Medium
+### V04. Groundbreaking / construction start on a named project
+**Signals:** project moving into build → structural docs must be complete/near-complete; change-order & shop-drawing load.
+**Detection:** construction press, LinkedIn, firm posts · **Window:** 0–45 days · **Trigger weight:** 4/5
 
-### C7. Award / recognition received
-**What it signals:** Visibility moment. Lower commercial signal but warm starting point.
-**Detection:** LinkedIn, search
+### V05. Design competition win / RFQ shortlist
+**Signals:** a big new project entering design → forward capacity need.
+**Detection:** AIA/architecture press, RFQ boards, LinkedIn · **Window:** 0–90 days · **Trigger weight:** 4/5
 
-### C8. Dissatisfaction with current vendor (review left)
-**What it signals:** Active displacement window. Strong signal but rare and hard to find at scale.
-**Best use:** Lead with the specific pain they mentioned in the review.
-**Detection:** G2, Capterra, TrustRadius scraping
-**Difficulty:** Hard
+### V06. Named on a major high-rise in construction press
+**Signals:** firm publicly tied to a flagship tall/complex building → matches STR high-rise ICP.
+**Detection:** NY YIMBY, The Real Deal, ENR, Skyscrapercenter, local dev news · **Window:** 0–90 days · **Trigger weight:** 4/5
 
-### C9. Self-attributed traits (LinkedIn headline / about / experience)
-**What it signals:** What they want to be known for. Direct messaging hook.
-**Best use:** "Saw your headline mentions [trait] — that's the exact profile we built [solution] for."
-**Detection:** LinkedIn, Clay
-**Difficulty:** Medium
+### V07. Rezoning / entitlement approved for a large development they're tied to
+**Signals:** upstream — a big project cleared entitlement; design/structural work follows.
+**Detection:** city planning portals, local dev news · **Window:** 30–120 days · **Trigger weight:** 3/5
 
-### C10. Reverse IP / first-party intent
-**What it signals:** Visited your site (anonymously detected). Active research.
-**Detection:** RB2B, Clearbit Reveal, Snitcher
-**Difficulty:** Medium (needs site instrumentation)
+### V08. Developer / GC client announces a big new pipeline (downstream pull)
+**Signals:** the firm's KEY CLIENT is scaling → the firm will be pulled into more work.
+**Best use:** "[their client] just announced [pipeline] — your team's usually next in line."
+**Detection:** client press, Dodge, ENR · **Window:** 30–120 days · **Trigger weight:** 3/5
 
----
+### V09. Design-phase milestone (SD → DD → CD transition)
+**Signals:** the CD phase is exactly when drafting/detailing demand peaks; the crunch moment.
+**Detection:** firm posts, project trackers, LLM inference from award date · **Window:** phase-timed · **Trigger weight:** 4/5
 
-## D. How to pair signals for a strong hypothesis
+### V10. Backlog / revenue-growth commentary
+**Signals:** principal interview / ENR note about record backlog → capacity strain.
+**Detection:** ENR, ACEC, principal interviews, LinkedIn · **Window:** rolling · **Trigger weight:** 3/5
 
-A hypothesis = **one trigger** (Dynamic OR Individual) + **one or two static data points** to adapt the message.
+### V11. New master-agreement / on-call contract with an owner
+**Signals:** DOT / university / agency on-call → steady multi-project throughput.
+**Detection:** public procurement records, press · **Window:** 0–90 days · **Trigger weight:** 4/5
 
-**Strong pairings:**
-- A1 (hiring SDRs) + B1 (current 0 SDRs / 5 AEs) → "You're hiring SDRs but your 5 AEs are already doing all prospecting"
-- A2 (recent funding) + B6 (ACV indicator) → "Post-raise, you need pipeline matching the new ARR target — your current ACV says [math]"
-- A6 (pulled SDR job) + B2 (no in-house outbound team) → "Tried hiring an SDR, withdrew the role. We run outbound without the headcount"
-- A4 (started using HubSpot) + B3 (broader stack) → "6 months into HubSpot — most teams rethink lead gen entirely at this point"
-- C5 (new in role) + B4 (who they sell to) → "New to VP Sales. Your buyers are CTOs — toughest audience to cold-email"
+### V12. Firm issues an RFP/RFQ to subcontract detailing / modeling
+**Signals:** they are literally shopping for outsourced capacity. **Highest intent in the pack.**
+**Detection:** bid boards, LinkedIn posts, industry Slack/forums · **Window:** while open · **Trigger weight:** 5/5
 
-**Weak pairings to avoid:**
-- A13 (award) + B7 (active LinkedIn) → both are "they're visible" — no problem hook
-- A11 (new client) + B12 (growing customer base) → tautological, no contrast
+### V13. Adaptive-reuse / seismic-retrofit project win
+**Signals:** direct match to STR service line (retrofit modeling).
+**Detection:** permits, press, firm posts · **Window:** 0–90 days · **Trigger weight:** 4/5
+
+## AEC tech / regulatory / events
+
+### V14. Won a project under an owner / state BIM mandate
+**Signals:** forced BIM workflow; if they lack Revit maturity, outsource is the fast path.
+**Detection:** RFP text, owner BIM standards, GSA/DOT requirements · **Window:** project-timed · **Trigger weight:** 4/5
+
+### V15. Seismic ordinance / new code-cycle deadline in their geo
+**Signals:** hard deadline (soft-story retrofit SF/LA; IBC/ASCE 7 cycle) → re-tooling window.
+**Detection:** municipal ordinance calendars, ICC/ASCE adoption trackers · **Window:** deadline-driven · **Trigger weight:** 3/5
+
+### V16. AEC event — attending / exhibiting
+**Signals:** NASCC Steel Conference, Autodesk University, ACEC, Greenbuild, BILT → reason to reach out, buying-adjacent.
+**Detection:** event exhibitor lists, LinkedIn · **Window:** around event · **Trigger weight:** 3/5
 
 ---
 
-## E. Tools by signal coverage
+# VERTICAL PACK — AI-AGENT INFRA / DEV-TOOL (VA01–VA10)
+
+*(added 2026-07-23, needs validation)* For self-hosted / source-available AI-agent & LLM-infra products. The **buying trigger = a team is building AI agents/automations AND cannot use cloud SaaS agent tools** (regulated data, on-prem mandate, data-residency, security review). Cloud-only agent builders (n8n cloud, Zapier, CrewAI cloud, Lindy, Relay) can't clear that bar — that gap is the wedge.
+
+## Build-intent / demand (the core)
+
+### VA01. Hiring an AI/ML/LLM/AI-agent engineer role
+**Signals:** the org is standing up an AI-automation function → will need a build surface. Instantiation of U14 for this vertical.
+**Best use:** "you're hiring an LLM engineer — most teams hit the 'where do agents run' question in month one."
+**Detection:** LinkedIn Jobs, Clay, Trigify, TheirStack (JD text) · **Window:** 14–60 days · **Trigger weight:** 4/5
+
+### VA02. Job post / JD names an agent stack (LangChain, LangGraph, CrewAI, AutoGen, n8n, Zapier, MCP)
+**Signals:** confirmed they're building agents and on which framework → personalize by integration or displacement. Instantiation of U17.
+**Detection:** LinkedIn JD text, TheirStack, Clay · **Window:** while live · **Trigger weight:** 4/5
+
+### VA03. JD / post states data-residency / on-prem / self-hosted / air-gapped AI requirement
+**Signals:** the purest fit — they explicitly can't send data to a hosted LLM/agent SaaS. Highest-intent signal in the pack.
+**Best use:** "saw the 'must run on our infra' line — that's exactly the wall cloud agent tools hit."
+**Detection:** LinkedIn JD text, Claygent, careers-page scrape · **Window:** while live · **Trigger weight:** 5/5
+
+### VA04. Regulated-industry company publicly building internal AI agents
+**Signals:** fintech/health/insurance/defense/gov/legal firm announces an AI-agent/automation initiative → security review guaranteed. Instantiation of U07.
+**Detection:** press, company blog, LinkedIn posts, Serper · **Window:** 14–60 days · **Trigger weight:** 4/5
+
+### VA05. Using a cloud-only agent SaaS while in a regulated / security-sensitive segment (displacement)
+**Signals:** BuiltWith/JD shows n8n cloud / Zapier / CrewAI cloud in a HIPAA/SOC2/GDPR-bound company → compliance mismatch, replacement window.
+**Detection:** BuiltWith, TheirStack, JD text + industry filter · **Window:** near renewal / audit · **Trigger weight:** 4/5
+
+### VA06. GitHub engagement with the repo or a direct competitor's repo (star/fork/issue)
+**Signals:** hands-on evaluator already in the self-host category. Warmest individual signal.
+**Detection:** GitHub stargazers/forks API, repo issues, Clay · **Window:** 0–45 days · **Trigger weight:** 4/5
+
+### VA07. New Head of AI / VP Engineering / CISO / Head of Platform (last 90 days)
+**Signals:** new exec owning the AI-infra or security decision → vendor audit + fresh budget. Instantiation of U13/U28.
+**Detection:** LinkedIn, Trigify, Champify · **Window:** days 14–90 · **Trigger weight:** 4/5
+
+### VA08. Eng/security leader self-authored content on self-hosting, data privacy, or agent security
+**Signals:** publicly voiced the exact pain (won't send data to OpenAI, wants on-prem LLMs, agent governance). Strongest LinkedIn hook. Instantiation of U24.
+**Detection:** LinkedIn, Trigify, Exa · **Window:** 0–30 days · **Trigger weight:** 5/5
+
+### VA09. New AI/data-security regulation or mandate hits their industry
+**Signals:** EU AI Act, sector data-handling rule, gov on-prem mandate → forces auditable/self-hosted tooling. Instantiation of U12.
+**Detection:** LLM analysis of industry news, regulatory calendars · **Window:** deadline-driven · **Trigger weight:** 3/5
+
+### VA10. Recent funding round at an AI-native or AI-adopting company
+**Signals:** fresh budget + mandate to ship AI features fast → infra decisions being made now. Instantiation of U01, AI-filtered.
+**Detection:** Crunchbase, PredictLeads, Intellizence · **Window:** 0–90 days · **Trigger weight:** 3/5
+
+---
+
+# DATA POINTS (static — shape the message)
+
+## Universal (D01–D10)
+
+- **D01. Team composition / function headcount** — 0 SDRs + 5 AEs, or 1 drafter + 6 PEs. Reveals whether the function is systematic or ad-hoc. *Pair with:* U14/U15/U16.
+- **D02. In-house capability present/absent** — presence vs absence of a function flips the angle entirely.
+- **D03. Current tool stack** — reveals sophistication, budget, gaps.
+- **D04. Who they sell to (buyer type)** — CTO (skeptical) vs CMO (inbox-flooded) → different outbound.
+- **D05. Geographic / team distribution** — distributed = cost/timezone-aware already.
+- **D06. Revenue model / ACV indicators** — determines whether the outbound math works.
+- **D07. Content / LinkedIn activity level** — active poster = marketing-aware; silent = referral-reliant.
+- **D08. Company maturity / metadata strength** — public-facing polish, positioning clarity.
+- **D09. Public / private (ticker)** — listed → bigger budgets, longer cycles.
+- **D10. Customer-base trajectory** — growing (double-down) vs shrinking (churn/cashflow angle).
+
+## AEC (DV01–DV15)
+
+- **DV01. In-house drafting/detailing team size** — 0–2 vs 3+. Primary capacity proxy. *Core pairing for every AEC hypothesis.*
+- **DV02. PE-to-drafter ratio** — high ratio = licensed engineers doing low-value CAD = expensive pain.
+- **DV03. Has a VDC/BIM department?** — yes/no flips the whole message.
+- **DV04. BIM/Revit maturity** — published capability vs none.
+- **DV05. Detailing software in stack** — Tekla/SDS2 = steel detailing; Revit = modeling. Sets which service to pitch.
+- **DV06. Analysis software** — RISA / ETABS / SAP2000 / RAM → sophistication + sector.
+- **DV07. % high-rise / mixed-use in portfolio** — core ICP-fit gate for STR.
+- **DV08. Sector mix** — residential / commercial / healthcare / data center / industrial.
+- **DV09. Seismic / wind zone** — drives retrofit vs new-build angle and code exposure.
+- **DV10. ENR rank / size band** — firm scale.
+- **DV11. Already uses offshore/nearshore?** — outsource-aware → skip the education, pitch quality/switch.
+- **DV12. # concurrent active projects** — throughput proxy.
+- **DV13. SE-licensed states** — geographic license spread → project geography.
+- **DV14. Client type** — developer / GC / owner / public agency → deadline & volume profile.
+- **DV15. Labor-cost exposure** — union / prevailing-wage / HCOL metro → in-house drafting is dearer, outsource ROI stronger.
+
+## AI-Agent Infra (DA01–DA08) *(added 2026-07-23)*
+
+- **DA01. Regulated industry (fintech / health / insurance / defense / gov / legal)** — the core self-host qualifier. Presence = cloud agent SaaS is disqualified for them. *Core pairing for every VA hypothesis.*
+- **DA02. Compliance posture (SOC2 / HIPAA / GDPR / FedRAMP / ISO 27001)** — badges on site or in JD → data can't leave their perimeter.
+- **DA03. Has an in-house platform / DevOps / infra team** — yes = they CAN self-host, the "runs on your infra" pitch lands; no = lead with managed simplicity.
+- **DA04. Current agent/automation stack** — n8n / Zapier / Make / CrewAI / LangChain / none → displacement vs greenfield.
+- **DA05. Company type — AI-native vs traditional-enterprise-adopting-AI** — sets sophistication and message altitude.
+- **DA06. Team size / eng headcount band** — proxy for build capacity and deal size.
+- **DA07. Open-source affinity** — active GitHub org, OSS in stack → receptive to source-available/self-host story.
+- **DA08. Buyer type (CISO vs Head of AI vs VP Eng)** — security-owner (risk framing) vs builder (velocity framing) → different angle.
+
+---
+
+## How to pair for a strong hypothesis
+
+Hypothesis = **one signal** (prefer Signal over Data point as the trigger) + **one or two data points** to adapt the message.
+
+**AEC strong pairings:**
+- V01 (project award) + DV01 (0–2 drafters) → "won [project] but a 2-person drafting team — CDs will bury them"
+- V02 (permit filed, SER) + DV02 (high PE-to-drafter) → "your PEs will be modeling instead of stamping"
+- V12 (RFP for detailing) + DV05 (Tekla in stack) → "saw you're sourcing detailing — we run Tekla steel detailing"
+- U15 (pulled drafter req) + DV11 (no offshore yet) → "hiring a drafter didn't work out — capacity without a new seat"
+- V08 (client pipeline announced) + DV07 (high-rise portfolio) → "[client]'s pipeline lands on your desk next"
+
+**Universal strong pairings:**
+- U14 (hiring SDRs) + D01 (0 SDRs / 5 AEs) · U13 (new leader) + D04 (who they sell to) · U15 (pulled req) + D02 (no in-house function)
+
+**Weak pairings to avoid:** two "they're visible" facts (U10 award + D07 active LinkedIn); tautologies (U09 new client + D10 growing base).
+
+---
+
+## Tools by signal coverage
 
 | Tool | Strongest for |
 |---|---|
-| **Clay** | Almost everything — primary enrichment + signal detection layer |
-| **Bitscale** | LLM enrichment, custom signal research, static data points at scale |
-| **Trigify** | LinkedIn-native real-time signals (new role, SDR removed, posts) |
-| **BuiltWith** | B3, B10, B11 (tech stack) |
-| **Crunchbase** | A2, A9, A10, A15 (funding, M&A, IPO) |
-| **LinkedIn (Sales Nav)** | TAM definition, A1, A5, B1, B2, B5, C-series |
-| **Apollo** | Initial list building, TAM sizing, basic enrichment |
-| **Exa / search APIs** | C1, C2 (authored content) |
+| **Clay** | primary enrichment + detection layer for almost everything |
+| **Trigify** | LinkedIn-native real-time (U24–U30, U15/U19 job history) |
+| **PredictLeads / Intellizence** | U01, U02, U07, U13, U16 |
+| **BuiltWith / TheirStack** | U17, U20, U21, U22, U23 |
+| **Crunchbase** | U01, U02, U03, U04 |
+| **Dodge / ConstructConnect / ENR** | V01, V04, V08, V10 |
+| **Shovels.ai / BuildZoom / DOB portals** | V02, V07, V13 |
+| **SAM.gov / bid boards** | V03, V11, V12 |
+| **LinkedIn (Sales Nav)** | TAM, U14/U16, D01/D02, DV01–DV03, C-series |
+| **Apollo** | list building, TAM sizing |
 
 ---
 
-## F. Maintaining this catalog
+## Maintaining this catalog
 
-If a new signal comes up that doesn't fit any of A/B/C above:
-1. Add it with a new ID (A18, B13, C11 as appropriate)
-2. Include: what it signals, best-use cold-email framing, detection tool, trivial-trigger weight
-3. Tag with `(added YYYY-MM-DD, needs validation)` until at least one campaign has tested it
-
-If a signal proves unreliable after 3+ campaigns (low scoring or no replies), tag it `(unreliable — avoid)` instead of deleting — that history is itself useful.
+- New universal signal → next `U##`. New AEC signal → next `V##`. New vertical → a fresh `## Vertical pack — <name>` section with its own `X##` prefix.
+- Each card: what it signals · best-use framing · detection tool · timing window · trigger weight.
+- New/untested signal → tag `(added YYYY-MM-DD, needs validation)` until a campaign tests it.
+- Signal that fails 3+ campaigns → tag `(unreliable — avoid)`, don't delete (the history is useful).

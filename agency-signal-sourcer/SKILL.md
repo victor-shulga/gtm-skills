@@ -1,13 +1,13 @@
 ---
 name: agency-signal-sourcer
-description: Operational buying-signal engine adapted for B2B service agencies (Viktor Shulha's clients — BIM/MEP, custom dev, GIS, AI/SaaS engineering outsourcing). Answers the OPERATIONAL half of signal-based outbound: how to DETECT a signal (which tool, Clay credit cost), WHEN it expires (freshness/decay windows), how to SCORE & prioritise accounts (recency multipliers, multi-signal stacking, heat tiers + SLAs), and WHAT to do once it fires (signal-to-action GTM plays). Use when the user asks about: detecting buying signals, which tool finds which signal, Clay credit cost per signal, signal freshness / decay / timing window, signal scoring, multi-signal stacking, heat-tier SLAs, signal-to-action plays, visitor-tracking / intent tooling (RB2B, Trigify, Common Room, Bombora, Koala, Warmly, 6sense — with EU/GDPR and agency-budget caveats applied), or "how do we operationalise signal X". This is the DETECTION + SCORING + ACTION layer. It pairs with the STRATEGY layer (which signal × ICP × offer to test) — see Integration below. Do NOT use it to invent the signal list itself (that lives in hypo-generator's signals-catalog) or to write the actual outreach copy (use 03-copy-generation / sequence-writer).
+description: Operational buying-signal engine adapted for B2B service agencies (Viktor Shulha's clients — BIM/MEP, custom dev, GIS, AI/SaaS engineering outsourcing). Answers the OPERATIONAL half of signal-based outbound: how to DETECT a signal (which tool, Clay credit cost), WHEN it expires (freshness/decay windows), how to SCORE & prioritise accounts (recency multipliers, multi-signal stacking, heat tiers + SLAs), and WHAT to do once it fires (signal-to-action GTM plays). Use when the user asks about: detecting buying signals, which tool finds which signal, Clay credit cost per signal, signal freshness / decay / timing window, signal scoring, multi-signal stacking, heat-tier SLAs, signal-to-action plays, visitor-tracking / intent tooling (RB2B, Trigify, Common Room, Bombora, Koala, Warmly, 6sense — with EU/GDPR and agency-budget caveats applied), or "how do we operationalise signal X". This is the DETECTION + SCORING + ACTION layer. It pairs with the STRATEGY layer (which signal × ICP × offer to test) — see Integration below. Do NOT use it to invent the signal list itself (that lives in hypo-generator's signals-catalog) or to write the actual outreach copy (use copy-generation / sequence-writer).
 ---
 
 # Agency Signal Sourcer (operational layer)
 
 Adapted from adapted from public playbook's signal-sourcer, **re-pointed at B2B service agencies** instead of US SaaS vendors.
 This skill is the *operational* half of signal-based outbound. The *strategic* half (what to test)
-already lives in Viktor's `hypo-generator` and `06-hypothesis-builder` — they compose (see Integration).
+already lives in Viktor's `hypo-generator` and `hypothesis-builder` — they compose (see Integration).
 
 ## Setup (run once per session)
 
@@ -61,12 +61,12 @@ hypo-generator                                    agency-signal-sourcer (this sk
   · reads signals-catalog.md (the signal LIST)      · detection-tools.md → HOW to detect each catalog signal,
   · builds 10-hyp matrix: ICP × signal × offer        which tool, Clay credit cost, freshness window
   · scores w/ 5-factor trivial-trigger weight       · scoring.md → once detected, SCORE & rank the accounts
-06-hypothesis-builder                               · gtm-plays.md → the signal-to-action sequence to run
+hypothesis-builder                               · gtm-plays.md → the signal-to-action sequence to run
   · persona × signal × angle backlog                · tool-setup-guides.md → stand up the detection tool
 ```
 
 **How to run them together:**
-1. **Strategy first** — run `hypo-generator` (from client URL) or `06-hypothesis-builder` (from a known ICP+signal set)
+1. **Strategy first** — run `hypo-generator` (from client URL) or `hypothesis-builder` (from a known ICP+signal set)
    to pick which **signal × ICP × offer** hypotheses to test. The signal names come from
    `hypo-generator/signals-catalog.md`, NOT from this skill.
 2. **Then operationalise here** — for each chosen signal, use this skill to answer:
@@ -76,21 +76,23 @@ hypo-generator                                    agency-signal-sourcer (this sk
    adding** to `signals-catalog.md`. When you spot a catalog gap (a detectable trigger not yet listed with a
    trivial-trigger weight), flag it for Viktor to add — don't silently invent it inside a hypothesis.
 
-> Rule of thumb: if the question is **"which signal should we bet on?"** → `hypo-generator` / `06-hypothesis-builder`.
+> Rule of thumb: if the question is **"which signal should we bet on?"** → `hypo-generator` / `hypothesis-builder`.
 > If it's **"how do we actually find / score / act on this signal?"** → this skill.
+> If it's **"we already have a base of accounts — go find who has a live signal right now"** → `signal-research`,
+> which executes this skill's method over a real list and returns an evidenced, dated, scored file + coverage report.
 
 ## Hand-off — use the EXISTING skills for these (don't reinvent)
 
 | Ask | Use |
 |---|---|
 | Pick which signal × ICP × offer to test (from a URL) | `hypo-generator` |
-| Build a persona × signal × angle hypothesis matrix | `06-hypothesis-builder` |
+| Build a persona × signal × angle hypothesis matrix | `hypothesis-builder` |
 | The canonical signal LIST with trivial-trigger weights | `hypo-generator/signals-catalog.md` |
-| Map a single buyer signal to messaging | `09-buyer-signal-mapper` |
-| Run Clay/LinkedIn signal detection on a company list | `02-signal-detection` |
+| Map a single buyer signal to messaging | `buyer-signal-mapper` |
+| Run Clay/LinkedIn signal detection on a company list | `signal-research` |
 | Score leads (general lead scoring) | `13-lead-scoring` |
 | Score meeting/booking intent | `28-meeting-intent-scorer` |
-| Write the actual outreach copy off the signal | `03-copy-generation`, `sequence-writer` |
+| Write the actual outreach copy off the signal | `copy-generation`, `sequence-writer` |
 
 ## Response format
 

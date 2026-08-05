@@ -1,6 +1,6 @@
 ---
 name: hypo-generator
-description: Use when Viktor wants to generate outreach hypotheses for an IT agency client from a website URL or text brief. Performs Phase 1 (extract services / ICP / use cases / case studies from the client's site) + Phase 2 (build a 10-hypothesis matrix of 2-3 ICP × 2-3 signals × 2-3 offers, each scored with Viktor's 5-factor weighted framework). Trigger when the user says: "генеруй гіпотези для клієнта", "побудуй матрицю гіпотез", "оціни цей агентський сайт", "що тестувати для [клієнт]", "hypothesis generation for agency", "матриця гіпотез по URL", or provides a client URL and asks what campaigns to run. NOT for one-off campaign idea generation when ICP/signals are already known — use 06-hypothesis-builder for that.
+description: Use when Viktor wants to generate outreach hypotheses for an IT agency client from a website URL or text brief. Performs Phase 1 (extract services / ICP / use cases / case studies from the client's site) + Phase 2 (build a 10-hypothesis matrix of 2-3 ICP × 2-3 signals × 2-3 offers, each scored with Viktor's 5-factor weighted framework). Trigger when the user says: "генеруй гіпотези для клієнта", "побудуй матрицю гіпотез", "оціни цей агентський сайт", "що тестувати для [клієнт]", "hypothesis generation for agency", "матриця гіпотез по URL", or provides a client URL and asks what campaigns to run. NOT for one-off campaign idea generation when ICP/signals are already known — use hypothesis-builder for that.
 ---
 
 # Hypo Generator
