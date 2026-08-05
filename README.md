@@ -1,8 +1,14 @@
 # GTM Skills — Victor Shulga
 
-Ten Claude Skills I use to run go-to-market for B2B service agencies — outbound,
-lead scoring, offers, proposals, reply handling, and more. Each skill is one
+Six Claude Skills I use to run go-to-market for B2B service agencies — buying signals,
+hypotheses, offers, proposals, and the writing pass that strips AI tone. Each skill is one
 `/command` that carries a full working method, not a prompt snippet.
+
+These are the **strategy and pre-outreach** skills. The execution skills that used to live here —
+reply handling, reply audits, lead scoring, weekly reporting — moved into the
+[outbound-engine](https://github.com/victor-shulga/outbound-engine-skills) bundle, and `meeting-prep`
+moved into [sales-engine](https://github.com/victor-shulga/sales-engine-skills), so that no skill
+exists in two repos at once. See the changelog below.
 
 Built by [Victor Shulga](https://victorshulga.com) — Fractional CRO for IT agencies.
 
@@ -27,15 +33,21 @@ Then call it in Claude with `/<skill-name>`.
 | Skill | What it does |
 |---|---|
 | `hypo-generator` | From an agency site → a weighted ICP × signal × offer hypothesis matrix. |
-| `reply-audit` | Forensic audit of outbound replies → root cause (targeting vs pitch) → 9-section report. |
-| `lead-scoring` | Deterministic 100-pt ICP rubric with anti-ICP gates, before SDR outreach. |
 | `offer-factory` | From a site → 5–10 testable offer-bets (ICP × pain × mechanism), scored. |
 | `agency-signal-sourcer` | Buying-signal engine: detect, decay windows, scoring, heat tiers, signal-to-action plays. |
-| `weekly-outreach-report` | Narrative weekly outreach report (7+2 sections) with data-quality warnings first. |
-| `reply-objection-handler` | One reply → classify → one ready-to-send message + a library of proven templates. |
-| `meeting-prep` | Pre-call brief ≤500 words for a booked discovery/demo call. |
+| `signal-research` | Runs an existing account base through a signal hunt → evidenced, dated, scored list + coverage report. |
 | `proposal-generator` | Two proposals (call-deck + send version) on the client's brand, with a critique checklist. |
 | `anticopywriting-ai` | Strips the AI tone from UK/EN text — clichés, filler, over-formatting. |
+
+## Changelog
+
+**Aug 2026 — repo boundaries drawn.** Five skills left this repo to remove cross-repo duplicates:
+`reply-objection-handler`, `reply-audit`, `lead-scoring` and `weekly-outreach-report` are now in
+[outbound-engine](https://github.com/victor-shulga/outbound-engine-skills); `meeting-prep` is in
+[sales-engine](https://github.com/victor-shulga/sales-engine-skills). Previously some of them were
+installable from two places under the same name, with the copies drifting apart — installing both
+bundles gave you two different skills answering to one name. This repo now holds strategy and
+pre-outreach only.
 
 ## Master skills
 

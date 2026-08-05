@@ -1,6 +1,6 @@
 ---
 name: offer-factory
-description: Use when Viktor wants to invent offers FAST for an IT-agency client and test them with outbound. From a client website URL, generates 5–10 testable offer-bets (ICP × pain × mechanism), scores them, and expands the winners into outbound-ready cards with built-in test design. Trigger when the user says "придумай офери для клієнта", "що продавати цій агенції", "офери під аутбаунд", "build offers from this URL", "offer factory", "розроби офер для [клієнт]", or pastes an agency URL and asks what to sell/test. NOT for choosing WHO+WHICH-SIGNAL to target (use 06-hypothesis-builder / hypo-generator for that) — this skill is about the OFFER itself.
+description: Use when Viktor wants to invent offers FAST for an IT-agency client and test them with outbound. From a client website URL, generates 5–10 testable offer-bets (ICP × pain × mechanism), scores them, and expands the winners into outbound-ready cards with built-in test design. Trigger when the user says "придумай офери для клієнта", "що продавати цій агенції", "офери під аутбаунд", "build offers from this URL", "offer factory", "розроби офер для [клієнт]", or pastes an agency URL and asks what to sell/test. NOT for choosing WHO+WHICH-SIGNAL to target (use hypothesis-builder / hypo-generator for that) — this skill is about the OFFER itself.
 ---
 
 # Offer Factory
@@ -71,7 +71,7 @@ Test:  N = 40–60 targeted leads
 ```
 
 ### Phase 7 — Output
-Ranked table + full cards. **Ask before writing to Google Sheets** (the user's "Service – use case – offer" 12-column template). Optionally hand off the winners to `hypothesis-builder` (signals/personas) then `03-copy-generation` (sequences).
+Ranked table + full cards. **Ask before writing to Google Sheets** (the user's "Service – use case – offer" 12-column template). Optionally hand off the winners to `hypothesis-builder` (signals/personas) then `copy-generation` (sequences).
 
 ## Promise Formulas (replace "We help X achieve Y via Z")
 "We help…" is fine for the internal card line, but never as the outbound promise. Use:
