@@ -1,6 +1,18 @@
 ---
 name: agency-signal-sourcer
-description: Operational buying-signal engine adapted for B2B service agencies (Viktor Shulha's clients — BIM/MEP, custom dev, GIS, AI/SaaS engineering outsourcing). Answers the OPERATIONAL half of signal-based outbound: how to DETECT a signal (which tool, Clay credit cost), WHEN it expires (freshness/decay windows), how to SCORE & prioritise accounts (recency multipliers, multi-signal stacking, heat tiers + SLAs), and WHAT to do once it fires (signal-to-action GTM plays). Use when the user asks about: detecting buying signals, which tool finds which signal, Clay credit cost per signal, signal freshness / decay / timing window, signal scoring, multi-signal stacking, heat-tier SLAs, signal-to-action plays, visitor-tracking / intent tooling (RB2B, Trigify, Common Room, Bombora, Koala, Warmly, 6sense — with EU/GDPR and agency-budget caveats applied), or "how do we operationalise signal X". This is the DETECTION + SCORING + ACTION layer. It pairs with the STRATEGY layer (which signal × ICP × offer to test) — see Integration below. Do NOT use it to invent the signal list itself (that lives in hypo-generator's signals-catalog) or to write the actual outreach copy (use copy-generation / sequence-writer).
+description: >-
+  Operational buying-signal engine adapted for B2B service agencies (Viktor Shulha's clients — BIM/MEP, custom
+  dev, GIS, AI/SaaS engineering outsourcing). Answers the OPERATIONAL half of signal-based outbound: how to
+  DETECT a signal (which tool, Clay credit cost), WHEN it expires (freshness/decay windows), how to SCORE &
+  prioritise accounts (recency multipliers, multi-signal stacking, heat tiers + SLAs), and WHAT to do once it
+  fires (signal-to-action GTM plays). Use when the user asks about: detecting buying signals, which tool finds
+  which signal, Clay credit cost per signal, signal freshness / decay / timing window, signal scoring,
+  multi-signal stacking, heat-tier SLAs, signal-to-action plays, visitor-tracking / intent tooling (RB2B,
+  Trigify, Common Room, Bombora, Koala, Warmly, 6sense — with EU/GDPR and agency-budget caveats applied), or
+  "how do we operationalise signal X". This is the DETECTION + SCORING + ACTION layer. It pairs with the
+  STRATEGY layer (which signal × ICP × offer to test) — see Integration below. Do NOT use it to invent the
+  signal list itself (that lives in hypo-generator's signals-catalog) or to write the actual outreach copy (use
+  copy-generation / sequence-writer).
 ---
 
 # Agency Signal Sourcer (operational layer)
