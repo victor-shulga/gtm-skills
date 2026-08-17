@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Contractors 50-200, opened a coordinator role in the last 60 days → coordination offload",
+    "gate": true,
+    "scores": {"proof": 5, "pain": 5, "trigger": 3, "volume": 3, "data_cost": 3, "speed": 5},
+    "why": {
+      "proof": "case with a number in exactly this niche",
+      "pain": "the role is open, the budget is already approved",
+      "trigger": "job postings are a common signal — competitors use them too",
+      "volume": "roughly 600 companies in the target geo",
+      "data_cost": "two filters plus enrichment, about half a day",
+      "speed": "LinkedIn, first replies inside a week"
+    }
+  },
+  {
+    "name": "Municipalities, cadastre refresh cycle",
+    "gate": true,
+    "scores": {"proof": 3, "pain": 3, "trigger": 1, "volume": 5, "data_cost": 1, "speed": 3},
+    "why": {
+      "trigger": "every vendor writes on the same public procurement calendar",
+      "data_cost": "each authority has to be checked by hand"
+    }
+  },
+  {
+    "name": "Segment with no case study behind it",
+    "gate": true,
+    "scores": {"proof": 0, "pain": 5, "trigger": 5, "volume": 5, "data_cost": 5, "speed": 5},
+    "why": {"proof": "no case, no number, not even an adjacent project"}
+  },
+  {
+    "name": "Idea with no list source",
+    "gate": false,
+    "why": {"gate": "G1 FAIL — no named source that yields 300 companies with this trigger"}
+  }
+]
