@@ -33,6 +33,7 @@ Then call it in Claude with `/<skill-name>`.
 | Skill | What it does |
 |---|---|
 | `hypo-generator` | From an agency site → a weighted ICP × signal × offer hypothesis matrix. |
+| `hypothesis-scoring` | From a pile of hypotheses → a launch queue: stop-filter gate, the number N, capacity check, 6-factor score, top three go. |
 | `offer-factory` | From a site → 5–10 testable offer-bets (ICP × pain × mechanism), scored. |
 | `agency-signal-sourcer` | Buying-signal engine: detect, decay windows, scoring, heat tiers, signal-to-action plays. |
 | `signal-research` | Runs an existing account base through a signal hunt → evidenced, dated, scored list + coverage report. |
