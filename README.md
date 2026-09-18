@@ -1,6 +1,6 @@
 # GTM Skills — Victor Shulga
 
-Five Claude Skills I use to run go-to-market for B2B service agencies — buying signals,
+Six Claude Skills I use to run go-to-market for B2B service agencies — buying signals,
 hypotheses, offers, and the writing pass that strips AI tone. Each skill is one
 `/command` that carries a full working method, not a prompt snippet.
 
@@ -35,11 +35,14 @@ Then call it in Claude with `/<skill-name>`.
 | `hypo-generator` | From an agency site → a weighted ICP × signal × offer hypothesis matrix. |
 | `hypothesis-scoring` | From a pile of hypotheses → a launch queue: stop-filter gate, the number N, capacity check, 6-factor score, top three go. |
 | `offer-factory` | From a site → 5–10 testable offer-bets (ICP × pain × mechanism), scored. |
+| `prospect-profiler` | One company or person → a pre-outreach profile: what they do, what changed, what to open with. |
 | `agency-signal-sourcer` | Buying-signal engine: detect, decay windows, scoring, heat tiers, signal-to-action plays. |
 | `signal-research` | Runs an existing account base through a signal hunt → evidenced, dated, scored list + coverage report. |
 | `anticopywriting-ai` | Strips the AI tone from UK/EN text — clichés, filler, over-formatting. |
 
 ## Changelog
+
+**Sep 2026 — `prospect-profiler` added** (its page and ZIP on victorshulga.com/skills pointed at a folder that no longer existed).
 
 **Sep 2026 — `proposal-generator` moved to [sales-engine](https://github.com/victor-shulga/sales-engine-skills).**
 A proposal is the end of the sales block, not a pre-outreach step; it now sits next to `offer-ladder`,
