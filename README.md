@@ -1,7 +1,7 @@
 # GTM Skills — Victor Shulga
 
-Six Claude Skills I use to run go-to-market for B2B service agencies — buying signals,
-hypotheses, offers, proposals, and the writing pass that strips AI tone. Each skill is one
+Five Claude Skills I use to run go-to-market for B2B service agencies — buying signals,
+hypotheses, offers, and the writing pass that strips AI tone. Each skill is one
 `/command` that carries a full working method, not a prompt snippet.
 
 These are the **strategy and pre-outreach** skills. The execution skills that used to live here —
@@ -37,10 +37,13 @@ Then call it in Claude with `/<skill-name>`.
 | `offer-factory` | From a site → 5–10 testable offer-bets (ICP × pain × mechanism), scored. |
 | `agency-signal-sourcer` | Buying-signal engine: detect, decay windows, scoring, heat tiers, signal-to-action plays. |
 | `signal-research` | Runs an existing account base through a signal hunt → evidenced, dated, scored list + coverage report. |
-| `proposal-generator` | Two proposals (call-deck + send version) on the client's brand, with a critique checklist. |
 | `anticopywriting-ai` | Strips the AI tone from UK/EN text — clichés, filler, over-formatting. |
 
 ## Changelog
+
+**Sep 2026 — `proposal-generator` moved to [sales-engine](https://github.com/victor-shulga/sales-engine-skills).**
+A proposal is the end of the sales block, not a pre-outreach step; it now sits next to `offer-ladder`,
+`meeting-prep` and `pipeline-analysis`. Same rule as before: one home per skill.
 
 **Aug 2026 — repo boundaries drawn.** Five skills left this repo to remove cross-repo duplicates:
 `reply-objection-handler`, `reply-audit`, `lead-scoring` and `weekly-outreach-report` are now in
