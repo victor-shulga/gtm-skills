@@ -11,7 +11,8 @@ description: >-
   Bombora, Koala, Warmly, 6sense, with EU/GDPR and agency-budget caveats), or "how do we
   operationalise signal X". Pairs with the STRATEGY layer (which signal x ICP x offer to test). Do NOT
   use it to invent the signal list (hypo-generator's signals-catalog) or to write outreach copy
-  (sequence-writer).---
+  (sequence-writer).
+---
 
 # Agency Signal Sourcer (operational layer)
 
