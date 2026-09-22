@@ -16,14 +16,19 @@ Outputs JSON with:
     - markers_by_category: breakdown by pattern category
     - top_offenders: top 15 most frequent markers with counts and example lines
     - severity: "low" | "medium" | "high" based on density
+    - hard_fails includes invisible_chars (zero-width / format characters);
+      --strip-invisible OUT removes them and writes the clean copy
 """
 
 import argparse
 import json
 import re
 import sys
+import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
+
+from structural import find_structural, rhythm
 
 # ----------------------------------------------------------------------------
 # UKRAINIAN PATTERNS
@@ -193,6 +198,26 @@ PATTERNS_UK = {
         r"\bне можна не звернути увагу",
         r"\bне менш важливим є\b",
     ],
+    # Viktor's own vetoes. Not generic AI markers: words he rejects outright,
+    # in any register. memory/feedback_writing_bans.md points 5, 6, 6a, 9, 10.
+    "viktor_hard_bans": [
+        r"\bжив(ий|ого|ому|им|ім|а|ої|ій|ою|е|ого|і|их|ими)\b",
+        r"\bмертв(ий|ого|ому|им|ім|а|ої|ій|ою|е|і|их|ими)\b",
+        r"\bвузьк(ий|ого|ому|им|ім|а|ої|ій|ою|е|і|их|ими)\b",
+        r"\bзвуз(ити|ив|ила|имо|ьте)\b",
+        r"\bтруб(а|и|і|у|ою|о)\b",
+        r"\bпайп(а|и|і|у)?\b",
+        r"\bкаденс(у|ом|и|ів)?\b",
+        r"\bнаріжн(ий|ого|ому) камін",
+        r"\bчесно кажучи\b",
+        r"\bвідверто кажучи\b",
+        r"\bправда в тому\b",
+        r"\bвузьке горло\b",
+    ],
+    # Allowed only in the literal, construction sense. Always eyeball the hit.
+    "viktor_review_words": [
+        r"\bфундамент(у|ом|и|ів|альн\w*)?\b",
+    ],
     "abstract_world": [
         r"\bу світі (сучасних|бізнес|техно|цифров)",
         r"\bу сфері\b",
@@ -300,6 +325,10 @@ PATTERNS_EN = {
         r"\b(in line|align) with\b",
         r"\bmoreover\b",
         r"\bfurthermore\b",
+        r"\bstreamline[ds]?\b",
+        r"\bcutting[- ]edge\b",
+        r"\btransformative\b",
+        r"\bshed(ding)? light on\b",
     ],
     "avoiding_is": [
         r"\bserves as\b",
@@ -383,6 +412,26 @@ PATTERNS_EN = {
 
 
 # ----------------------------------------------------------------------------
+# HARD-FAIL GATE
+# ----------------------------------------------------------------------------
+# ai_density scores a text. These reject it. One hit is enough, whatever the
+# density: Viktor rejects each of these on sight regardless of how clean the
+# rest reads.
+HARD_FAIL_STRUCTURAL = {
+    "myth_flip",
+    "antithesis_pair",
+    "reversal_pair",
+    "comma_upsell",
+    "rule_of_three",
+}
+HARD_FAIL_LEXICAL = {
+    "viktor_hard_bans",
+    "negative_parallelism",
+}
+WARN_STRUCTURAL = {"throat_clear", "question_close"}
+
+
+# ----------------------------------------------------------------------------
 # DETECTION LOGIC
 # ----------------------------------------------------------------------------
 def detect_language(text: str) -> str:
@@ -399,6 +448,33 @@ def count_em_dashes(text: str, total_words: int) -> tuple[int, float]:
     count = len(re.findall(r"[—–](?!\d)", text))
     rate = (count / max(total_words, 1)) * 1000
     return count, rate
+
+
+# Characters a keyboard never types. They ride along in generated text, survive
+# copy-paste into LinkedIn / Notion / email and are invisible in every editor.
+# Unicode category Cf = format characters: zero-width space / joiner / non-joiner,
+# word joiner, soft hyphen, BOM, bidi marks, tag characters (U+E0000..E007F).
+_HARD_SPACES = {"\u00a0": "NO-BREAK SPACE", "\u202f": "NARROW NO-BREAK SPACE",
+                "\u2007": "FIGURE SPACE", "\u2009": "THIN SPACE", "\u200a": "HAIR SPACE"}
+
+
+def count_invisible(text: str) -> tuple[int, dict[str, int], int]:
+    """Returns (format_char_count, breakdown_by_name, hard_space_count)."""
+    breakdown: Counter = Counter()
+    for ch in text:
+        if unicodedata.category(ch) == "Cf":
+            name = unicodedata.name(ch, f"U+{ord(ch):04X}")
+            breakdown[f"U+{ord(ch):04X} {name}"] += 1
+    hard_spaces = sum(text.count(ch) for ch in _HARD_SPACES)
+    return sum(breakdown.values()), dict(breakdown), hard_spaces
+
+
+def strip_invisible(text: str) -> str:
+    """Delete every Cf character, normalise hard spaces to a plain space."""
+    out = "".join(ch for ch in text if unicodedata.category(ch) != "Cf")
+    for ch in _HARD_SPACES:
+        out = out.replace(ch, " ")
+    return out
 
 
 def count_bold(text: str) -> int:
@@ -466,7 +542,7 @@ def severity_label(density: float) -> str:
     return "high"
 
 
-def analyze(text: str, lang: str) -> dict:
+def analyze(text: str, lang: str, mode: str = "generic") -> dict:
     if lang == "auto":
         lang = detect_language(text)
 
@@ -477,6 +553,7 @@ def analyze(text: str, lang: str) -> dict:
 
     # Style metrics computed separately
     em_dashes, em_dash_rate = count_em_dashes(text, total_words)
+    invisible_count, invisible_breakdown, hard_spaces = count_invisible(text)
     bold_count = count_bold(text)
     emoji_count = count_emoji_in_headings(text)
     wrong_quotes = count_wrong_quotes(text, lang)
@@ -520,8 +597,105 @@ def analyze(text: str, lang: str) -> dict:
             "example": excerpt,
         })
 
+    # ------------------------------------------------------------------
+    # Structural detectors + rhythm
+    # ------------------------------------------------------------------
+    structural_hits = find_structural(text, lang)
+    rhythm_metrics = rhythm(text)
+    for h in structural_hits:
+        markers_by_category[h["category"]] = markers_by_category.get(h["category"], 0) + 1
+
+    # ------------------------------------------------------------------
+    # Hard-fail gate
+    # ------------------------------------------------------------------
+    first_line = next(
+        (i + 1 for i, ln in enumerate(text.splitlines()) if ln.strip()), 1
+    )
+    hard_fails: list[dict] = []
+
+    # Any em dash at all. Zero tolerance, not a rate.
+    if em_dashes:
+        hard_fails.append({
+            "rule": "em_dash",
+            "count": em_dashes,
+            "why": "ban #1: zero em dashes, any length of text",
+        })
+
+    # Any invisible format character. A keyboard cannot type these; only a
+    # generator or a copy-paste from one leaves them behind.
+    if invisible_count:
+        hard_fails.append({
+            "rule": "invisible_chars",
+            "count": invisible_count,
+            "chars": invisible_breakdown,
+            "why": "zero-width / format characters survive paste and mark the text as generated; "
+                   "re-run with --strip-invisible to remove them",
+        })
+
+    for h in structural_hits:
+        cat = h["category"]
+        if cat in HARD_FAIL_STRUCTURAL:
+            hard_fails.append({"rule": cat, "line": h["line"], "quote": h["quote"]})
+        elif cat == "question_close" and mode == "post":
+            hard_fails.append({
+                "rule": "question_close",
+                "line": h["line"],
+                "quote": h["quote"],
+                "why": "a post CTA is never a question (email is the opposite)",
+            })
+
+    for cat in HARD_FAIL_LEXICAL:
+        for matched, line_no, excerpt in matches.get(cat, []):
+            # ban #2 exception: negative parallelism is allowed as the hook,
+            # i.e. the first line of a post. Nowhere else.
+            if cat == "negative_parallelism" and mode == "post" and line_no == first_line:
+                continue
+            hard_fails.append({"rule": cat, "line": line_no, "marker": matched, "quote": excerpt})
+
+    # one line, one rule, one complaint
+    seen_fail: set[tuple] = set()
+    deduped: list[dict] = []
+    for f in hard_fails:
+        key = (f["rule"], f.get("line"))
+        if key in seen_fail:
+            continue
+        seen_fail.add(key)
+        deduped.append(f)
+    hard_fails = deduped
+
+    warnings: list[dict] = [h for h in structural_hits if h["category"] in WARN_STRUCTURAL
+                            and not any(f.get("line") == h["line"] and f["rule"] == h["category"]
+                                        for f in hard_fails)]
+    if rhythm_metrics.get("flat"):
+        warnings.append({
+            "category": "flat_rhythm",
+            "note": f"sentence-length CV {rhythm_metrics['coefficient_of_variation']} < 0.35: "
+                    "every sentence is about the same length. Put a three-word sentence "
+                    "next to a thirty-word one.",
+        })
+    if hard_spaces:
+        warnings.append({
+            "category": "hard_spaces",
+            "count": hard_spaces,
+            "note": "no-break / narrow / thin spaces: a paste artefact, not a keyboard. "
+                    "Replace with plain spaces (--strip-invisible does it).",
+        })
+    for matched, line_no, excerpt in matches.get("viktor_review_words", []):
+        warnings.append({
+            "category": "viktor_review_words",
+            "line": line_no,
+            "marker": matched,
+            "note": "allowed only in the literal construction sense",
+        })
+
     return {
         "language": lang,
+        "mode": mode,
+        "verdict": "fail" if hard_fails else "pass",
+        "hard_fails": hard_fails,
+        "warnings": warnings,
+        "structural_hits": structural_hits,
+        "rhythm": rhythm_metrics,
         "total_words": total_words,
         "total_markers": total_markers,
         "ai_density_per_1000_words": round(ai_density, 2),
@@ -530,6 +704,9 @@ def analyze(text: str, lang: str) -> dict:
         "style_metrics": {
             "em_dashes": em_dashes,
             "em_dash_rate_per_1000_words": round(em_dash_rate, 2),
+            "invisible_format_chars": invisible_count,
+            "invisible_breakdown": invisible_breakdown,
+            "hard_spaces": hard_spaces,
             "bold_count": bold_count,
             "emoji_in_headings_or_lists": emoji_count,
             "wrong_or_mixed_quotes": wrong_quotes,
@@ -549,7 +726,20 @@ def main() -> int:
         default="auto",
         help="Language: uk, en, or auto-detect (default).",
     )
+    parser.add_argument(
+        "--mode",
+        choices=["post", "email", "generic"],
+        default="generic",
+        help="post: question endings and hook-position rules apply. "
+             "email: a closing question is expected. generic: neither.",
+    )
     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON.")
+    parser.add_argument(
+        "--strip-invisible",
+        metavar="OUT",
+        help="Write a copy with every invisible format character deleted and hard spaces "
+             "normalised to OUT (use - for stdout), then analyse the cleaned text.",
+    )
     args = parser.parse_args()
 
     if args.stdin:
@@ -559,7 +749,14 @@ def main() -> int:
     else:
         parser.error("Provide a path or --stdin.")
 
-    result = analyze(text, args.lang)
+    if args.strip_invisible:
+        text = strip_invisible(text)
+        if args.strip_invisible == "-":
+            sys.stdout.write(text)
+            return 0
+        Path(args.strip_invisible).write_text(text, encoding="utf-8")
+
+    result = analyze(text, args.lang, args.mode)
     indent = 2 if args.pretty else None
     print(json.dumps(result, ensure_ascii=False, indent=indent))
     return 0
