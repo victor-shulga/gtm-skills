@@ -10,7 +10,8 @@ description: >-
   touch brief", "дос'є на акаунти", "prep cards before outreach", "build prospect profiles", or when
   handed a scored list before copy is written. Sits between the list stage and the copy stage. NOT for
   deep one-company intelligence (account-dossier), NOT for persona archetypes (persona-builder), NOT
-  for writing the sequence (sequence-writer).---
+  for writing the sequence (sequence-writer).
+---
 
 # Prospect Profiler — the 60-second pre-touch card
 
