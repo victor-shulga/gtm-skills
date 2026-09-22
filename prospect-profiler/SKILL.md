@@ -1,20 +1,16 @@
 ---
 name: prospect-profiler
-description: >
-  Turns a SCORED account list into one tactical pre-touch dossier per account — a compact
-  "60-second card" an SDR reads right before writing the first touch. Batch by design: reads the
-  output of lead-scoring / agency-signal-sourcer (or any list with company + signal + role data) and
-  emits one action-card per account (summary, talking points, comm style, grounded pain, recommended
-  approach, data-quality flag). Adapted for B2B service agencies (Viktor Shulha's clients —
-  BIM/MEP, GIS, custom dev, AI/SaaS engineering outsourcing), NOT US-SaaS. Use when Viktor says:
-  "зроби картки по лідах", "профайли проспектів", "pre-touch brief", "дос'є на акаунти",
-  "prep cards before outreach", "профайл під кожен акаунт", "build prospect profiles", or hands a
-  scored list and wants per-account briefs before copy. This is the OPERATIONAL pre-copy stage that
-  sits between G2 (list) and G3 (copy) in the Outreach QA Framework. NOT for deep one-company customer
-  intelligence (use deep-company-analyser), NOT for persona archetypes from calls (use
-  persona-insights-analysis / 10-persona-builder), NOT for writing the actual sequence
-  (use sequence-writer / 03-copy-generation).
----
+description: >-
+  Turns a SCORED account list into one tactical pre-touch dossier per account: a compact "60-second
+  card" an SDR reads right before writing the first touch. Batch by design: reads the output of lead-
+  scoring / agency-signal-sourcer (or any list with company + signal + role data) and emits one action
+  card per account (summary, talking points, comm style, grounded pain, recommended approach, data-
+  quality flag). Adapted for B2B service agencies (BIM/MEP, GIS, custom dev, AI/SaaS engineering
+  outsourcing), NOT US-SaaS. Use when asked: "зроби картки по лідах", "профайли проспектів", "pre-
+  touch brief", "дос'є на акаунти", "prep cards before outreach", "build prospect profiles", or when
+  handed a scored list before copy is written. Sits between the list stage and the copy stage. NOT for
+  deep one-company intelligence (account-dossier), NOT for persona archetypes (persona-builder), NOT
+  for writing the sequence (sequence-writer).---
 
 # Prospect Profiler — the 60-second pre-touch card
 
