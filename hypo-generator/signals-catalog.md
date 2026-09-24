@@ -8,10 +8,10 @@ Canonical reference for the `/hypo-generator` skill. Every "Buying signal" value
 
 **Architecture (v2, 2026-07-16):**
 - **Universal signals (U01–U34)** — cross-vertical. Fire for any client (SaaS/dev, GIS, AEC, iGaming). This is the kept generic layer.
-- **Vertical packs (V-series)** — industry-specific signals that make a niche ICP non-trivial. First pack shipped: **AEC / construction (V01–V16)** for structural/architecture/BIM outsourcing clients. Add more packs over time (one `## Vertical pack — <name>` section each).
-- **Data points** — static facts, split the same way: Universal (D01–D10) + AEC (DV01–DV15).
+- **Vertical packs (V-series)** — industry-specific signals that make a niche ICP non-trivial. Packs shipped: **AEC / construction (V01–V16)** for structural/architecture/BIM outsourcing clients, and **AI-agent infra / dev-tool (VA01–VA10)**. Add more packs over time (one `## Vertical pack — <name>` section each).
+- **Data points** — static facts, split the same way: Universal (D01–D10) + AEC (DV01–DV15) + AI-agent infra (DA01–DA08).
 
-**Total: 50 signals (34 U + 16 V) · 25 data points (10 D + 15 DV).**
+**Total: 60 signals (34 U + 16 V + 10 VA) · 33 data points (10 D + 15 DV + 8 DA).**
 
 Sources combined: growth.band signals-framework · Maja Voje outreach triggers · Buying-Triggers template (Individual/Account/Persona) · Trigify companies/news/jobs/tech datasets · field experience in AEC outsourcing.
 
