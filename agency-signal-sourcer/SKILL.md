@@ -16,7 +16,7 @@ description: >-
 
 # Agency Signal Sourcer (operational layer)
 
-Adapted from adapted from public playbook's signal-sourcer, **re-pointed at B2B service agencies** instead of US SaaS vendors.
+Adapted from a public signal-sourcing playbook, **re-pointed at B2B service agencies** instead of US SaaS vendors.
 This skill is the *operational* half of signal-based outbound. The *strategic* half (what to test)
 already lives in Viktor's `hypo-generator` and `hypothesis-builder` — they compose (see Integration).
 
@@ -45,8 +45,8 @@ These override the source material, which was written for product/SaaS sellers:
 4. **Agency budget, not enterprise.** Demote enterprise-intent tools (**Bombora ~$30–100k/yr, 6sense ~$35–130k/yr,
    ZoomInfo ~$15–60k/yr**) to "enterprise only — usually out of scope." The realistic agency stack is
    **Clay + Serper/Claygent (0-credit detection first) + Trigify + RB2B-free + LinkedIn/Sales Nav.**
-5. **Benchmarks are directional, not promises.** The source's 18–22% / 35–40% reply figures are adapted from public playbook self-cited
-   and optimistic. Treat as ceiling; reality is closer to the team's house benchmark (top reply ~10%+). Never quote
+5. **Benchmarks are directional, not promises.** The source's 18–22% / 35–40% reply figures are self-cited by the
+   playbook's author and optimistic. Treat as ceiling; reality is closer to the team's house benchmark (top reply ~10%+). Never quote
    35–40% to a client as expected.
 
 ## Routing Table
