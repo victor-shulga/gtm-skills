@@ -32,7 +32,7 @@ question to test, not a fact to assert. If you can't ground or honestly infer it
 
 ## When to use / inputs
 
-Runs over a **scored list** — ideally the output of `13-lead-scoring` or `agency-signal-sourcer`
+Runs over a **scored list** — ideally the output of `lead-scoring` (outbound-engine-skills) or `agency-signal-sourcer`
 (account + signal + role + score). Minimum viable input: company name + at least one signal OR role.
 
 Read whatever exists: company, industry, size, the detected signal(s), persona/role, prior scoring
@@ -123,10 +123,10 @@ G1 strategy → G2 list (lead-scoring / agency-signal-sourcer)
               prospect-profiler  ← THIS skill: scored list → pre-touch cards
                          │
                          ▼
-              G3 copy (sequence-writer / 03-copy-generation / linkedin-sequence)
+              G3 copy (sequence-writer / linkedin-sequence)
 ```
 
-- **Upstream:** `13-lead-scoring`, `agency-signal-sourcer` (signal + freshness + score).
+- **Upstream:** `lead-scoring` (outbound-engine-skills), `agency-signal-sourcer` (signal + freshness + score).
 - **Deeper research, if a T1 needs it:** hand the account to `deep-company-analyser` (verbatim pain,
   why-buy) — this skill points there, it does not duplicate it.
 - **Downstream:** each card feeds G3. `the_signal` becomes the first-touch opener; `comm_style` sets
