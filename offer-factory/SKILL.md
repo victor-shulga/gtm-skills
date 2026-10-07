@@ -71,7 +71,7 @@ Test:  N = 40–60 targeted leads
 ```
 
 ### Phase 7 — Output
-Ranked table + full cards. **Ask before writing to Google Sheets** (the user's "Service – use case – offer" 12-column template). Optionally hand off the winners to `hypothesis-builder` (signals/personas) then `copy-generation` (sequences).
+Ranked table + full cards. **Ask before writing to Google Sheets** (the user's "Service – use case – offer" 12-column template). Optionally hand off the winners to `hypothesis-builder` (signals/personas) then `sequence-writer` (outbound-engine-skills, sequences).
 
 ## Promise Formulas (replace "We help X achieve Y via Z")
 "We help…" is fine for the internal card line, but never as the outbound promise. Use:

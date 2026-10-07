@@ -99,11 +99,11 @@ hypothesis-builder                               · gtm-plays.md → the signal-
 | Pick which signal × ICP × offer to test (from a URL) | `hypo-generator` |
 | Build a persona × signal × angle hypothesis matrix | `hypothesis-builder` |
 | The canonical signal LIST with trivial-trigger weights | `hypo-generator/signals-catalog.md` |
-| Map a single buyer signal to messaging | `buyer-signal-mapper` |
+| Map a single buyer signal to messaging | `angle-finder` (outbound-engine-skills) |
 | Run Clay/LinkedIn signal detection on a company list | `signal-research` |
-| Score leads (general lead scoring) | `13-lead-scoring` |
-| Score meeting/booking intent | `28-meeting-intent-scorer` |
-| Write the actual outreach copy off the signal | `copy-generation`, `sequence-writer` |
+| Score leads (general lead scoring) | `lead-scoring` (outbound-engine-skills) |
+| Score meeting/booking intent | `reply-objection-handler` (outbound-engine-skills, intent triage) |
+| Write the actual outreach copy off the signal | `sequence-writer` (outbound-engine-skills) |
 
 ## Response format
 
