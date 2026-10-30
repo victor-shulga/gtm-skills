@@ -59,7 +59,8 @@ For each kept offer (UA reasoning, EN promise + hook):
    Proof:         REAL case from the site; where missing → [TODO: need case ___]
    Risk-reversal: guarantee / success criteria (esp. high-ticket)
    Cold hook (EN): 1–2 lines + small CTA (+ 1 alt hook for A/B)
-   Score:         D L T E → Value | Signal | BLEND
+   Score:         value for the client X/10 · how fast cold outreach tests it Y/10 · total Z/10
+                  (D L T E and the formula stay in your working notes, never in the client document)
 ```
 
 ### Phase 6 — Test design (built into every card)
@@ -113,3 +114,35 @@ Pattern observed: all three winners were low-friction entry rungs; the big ongoi
 - This is a backlog of bets, not a campaign. Only expand what the client can resource to test.
 - Keep the cheap matrix (Phase 3) cheap — don't write full cards before scoring.
 - **Pairs with `offer-ladder`:** offer-factory = horizontal batch of bets to test cold; `offer-ladder` = vertical free→low→mid→high portfolio around one core transformation. If the user wants portfolio/monetization structure (not a test batch), route to `offer-ladder`. The ladder's cold-facing entry rung loops back here for the test card.
+
+## Terms and plain-language output
+
+<!-- glossary:start terms=offer-bet,axes,value-score,signal-score,blend,test-card,kill-keep,positive-reply-rate,risk-reversal,multi-thread,low-signal-rescue,entry-rung,expand,hook,cta,promise-formula,proof -->
+Rules for every document a client or their team will read (review, roast, canvas, offer cards, instruction):
+
+1. **Open with «Словник цього документа»**: only the terms that actually appear in it, at most 10, each as «термін — що це простими словами». Like the definitions section of a contract.
+2. **No internal codes or letter scales in the text** (A/B/C, D L T E, BLEND numbers without words, Own/Shared/Generic, Z1.4, GATE 2.5, T1–T6). Write the meaning instead: «є цифра з клієнтом», not «A».
+3. **Use the plain form from the table below.** English stays only for tool names and for copy that ships in English (promises, hooks, subject lines). If the document is in another language, translate the plain form, never the internal term.
+4. **Do not score what cannot exist yet.** A block that depends on work not done (signal catalog, case studies, a previous step) gets «пропущено: спершу потрібно <що саме>», not a score.
+5. **Every section of a review opens with one concrete action** («до наступного дзвінка: …»), then at most five lines of why. No paragraph that only restates the framework.
+
+| Internal term (this skill) | Write for the client | What it means |
+|---|---|---|
+| offer-bet, bet | варіант оферу на тест | окрема ставка: інша комбінація «кому · який результат · як робимо», а не той самий офер іншими словами |
+| axes (ICP / pain / mechanism) | три виміри оферу: кому, який результат, як робимо | щоб варіанти справді відрізнялися, між ними міняється хоча б один вимір |
+| Value score, D L T E (Dream, Likelihood, Time, Effort) | оцінка цінності для клієнта | наскільки бажаний результат, наскільки клієнт вірить, що він буде, як швидко і скільки зусиль від нього; кожне від 1 до 10 |
+| Signal score (MarketSize, TargetingEase, HookClarity) | оцінка, як швидко офер перевіримо в холодних листах | чи великий ринок, чи легко знайти цих людей і чи зрозуміло з першого рядка, про що офер; кожне від 1 до 10 |
+| BLEND | підсумкова оцінка варіанту | 60% цінність плюс 40% швидкість перевірки; за нею сортуємо варіанти |
+| test card, offer-factory card | картка тесту оферу | одна сторінка на один варіант: обіцянка, кому пишемо, доказ, перший лист, скільки контактів і за яким результатом лишаємо чи прибираємо офер |
+| kill / keep threshold, N | поріг «лишаємо чи прибираємо» | на 40–60 контактів за 2 тижні: від 10% позитивних відповідей лишаємо, менше 5% прибираємо, між ними міняємо сигнал або посаду |
+| positive reply rate | частка позитивних відповідей | скільки з тих, кому написали, відповіли з інтересом, а не «відпишіть мене» |
+| risk reversal, guarantee | гарантія, що знімає ризик | що клієнт отримає, якщо результату не буде: повернення грошей, безкоштовне продовження, оплата за етапами |
+| multi-thread map | карта людей в угоді | хто ще впливає на рішення і що кожному показати: фінансисту окупність, технічному безпеку, закупівлям умови |
+| low-signal rescue, wedge | звуження під канал | коли офер добрий, але тоне серед схожих: звужуємо нішу, додаємо гарантію, робимо прохання меншим |
+| entry rung, cold-facing rung | вхідний офер для холодних листів | офер, з яким ідемо до людей, що вас не знають: невеликий за ціною й ризиком (платний пілот, діагностика, короткий спринт) |
+| expand, land-and-expand | допродаж після першої роботи | дорожчі сходинки не пропонуємо холодним людям, їх продаємо клієнту, який уже отримав результат на вхідному офері |
+| hook, cold hook | гачок | перший рядок листа, через який людина читає далі |
+| CTA | прохання в кінці листа | конкретний маленький наступний крок: відповісти, подивитися, погодитися на дзвінок |
+| Promise Formulas | формула обіцянки | шаблон першого речення оферу: «результат без жертви», «з поганого стану в добрий за N днів» тощо |
+| proof, [TODO: need case] | доказ | кейс, цифра або відгук, що підтверджують обіцянку; якщо його немає, пишемо «потрібен кейс», а не вигадуємо |
+<!-- glossary:end -->
