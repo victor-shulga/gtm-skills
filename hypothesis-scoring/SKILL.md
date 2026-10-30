@@ -52,7 +52,7 @@ Four yes/no gates. **One "no" means the hypothesis is not scored at all.** Scori
 
 A failure here blocks *every* email hypothesis at once — report it as one blocker with an owner, not as N separate findings. These checks cost a day; skipped, they poison every conclusion that follows, because a hypothesis looks dead when the emails simply never arrived.
 
-Output a gate table: `hypothesis | G1 | G2 | G3 | G4 | verdict`. For each FAIL, write the single action that fixes it and who owns it.
+Output a gate table with each gate named in words: `hypothesis | list can be built | trigger can be verified | proof exists | decision maker reachable | verdict`. For each FAIL, write the single action that fixes it and who owns it.
 
 ### Step 2 — Rewrite into the canonical format
 
@@ -173,3 +173,34 @@ Input format, the hard-zero rule and gate handling are documented in the script 
 - `hypo-generator` — builds the hypothesis matrix from an agency URL; this skill scores its output before launch.
 - `agency-signal-sourcer` — detection tooling, cost and decay window per trigger; feeds the "Data-collection cost" and "Trigger non-obviousness" factors.
 - `anticopywriting-ai` — run the finished report through it before sending it to anyone.
+
+## Terms and plain-language output
+
+<!-- glossary:start terms=stop-filter,hypothesis-n,channel-capacity,hypo-6-factor,launch-queue,spf-dkim-dmarc,inbox-placement,warmup,bounce-rate,reply-rate,test-rounds,portfolio-80-20,test-verdict,hypothesis-journal,freshness-window -->
+Rules for every document a client or their team will read (review, roast, canvas, offer cards, instruction):
+
+1. **Open with «Словник цього документа»**: only the terms that actually appear in it, at most 10, each as «термін: що це простими словами». Like the definitions section of a contract.
+2. **No internal codes or letter scales in the text** (A/B/C, D L T E, BLEND numbers without words, Own/Shared/Generic, Z1.4, GATE 2.5, T1–T6). Write the meaning instead: «є цифра з клієнтом», not «A».
+3. **Use the plain form from the table below.** English stays only for tool names and for copy that ships in English (promises, hooks, subject lines). If the document is in another language, translate the plain form, never the internal term.
+4. **Do not score what cannot exist yet.** A block that depends on work not done (signal catalog, case studies, a previous step) gets «пропущено: спершу потрібно <що саме>», not a score.
+5. **Every section of a review opens with one concrete action** («до наступного дзвінка: …»), then at most five lines of why. No paragraph that only restates the framework.
+
+
+| Internal term (this skill) | Write for the reader | What it means |
+|---|---|---|
+| stop-filter, hard gate, deny-list | стоп-фільтр | одна ознака «ні» прибирає компанію до будь-яких витрат на дослідження |
+| canonical format, the number N | поріг відповідей N | скільки відповідей на 300 контактів за 3 тижні має бути, щоб гіпотеза вважалась підтвердженою; домовляємось до старту |
+| channel physics, capacity | пропускна здатність каналу | скільки контактів на день реально дають акаунти LinkedIn і поштові скриньки; визначає, скільки тестів поміститься |
+| 6-factor score 0/1/3/5: Proof · Pain · Trigger non-obviousness · Volume · Data cost · Speed | оцінка гіпотези за шістьма критеріями | сила доказу · гострота болю · чи не використовують сигнал конкуренти · обсяг ринку · вартість збору · швидкість перевірки; нуль за доказ чи біль прибирає гіпотезу |
+| queue statuses: launch / queue / dropped / failed the gate | черга запуску: в роботу · чекає · прибрано · не пройшла стоп-фільтр | три найкращі йдуть у роботу, решта чекає місця в каналі |
+| SPF / DKIM / DMARC, MX | SPF, DKIM, DMARC (записи, що підтверджують домен) | Технічні записи в налаштуваннях домену, які доводять поштовим сервісам, що лист справді від вас; без них листи йдуть у спам. |
+| inbox placement rate | частка листів у вхідних | Скільки листів потрапляє у вхідні замість спаму; нижче 90% з розсилкою чекаємо. |
+| warmup | прогрів поштових скриньок | поступове збільшення кількості листів з нової скриньки, щоб пошта не потрапила в спам. |
+| bounce | відмови доставки | частка листів, які не дійшли, бо адреса неправильна чи мертва. |
+| reply rate | частка відповідей | скільки людей з тих, кому написали, відповіли. |
+| order of variables: where / what / how | порядок тестів: кому · що · як | спершу шукаємо сегмент, потім офер, потім подачу; за раунд міняємо одну річ |
+| portfolio 80/20 | 80% на перевірене, 20% на тест | більшість денного ліміту каналу йде на підтверджені гіпотези, решта на один новий тест |
+| verdict: scale · change one variable · close | підсумок тесту: масштабуємо · міняємо одну річ · закриваємо | три можливі рішення після тесту; «ще незрозуміло» означає замалий обсяг |
+| journal skeleton | журнал тестів | таблиця фактів по кожному тесту: дати, обсяги, відповіді, зустрічі, цитати заперечень і рішення |
+| freshness window, expiry window, decay | термін свіжості сигналу | скільки днів сигнал ще дає привід писати; потім він стає просто фактом |
+<!-- glossary:end -->

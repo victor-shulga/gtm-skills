@@ -97,6 +97,33 @@ If there's no evidence → default `direct` and flag `data_quality` accordingly.
 
 ---
 
+## Terms and plain-language output
+
+<!-- glossary:start terms=account-tier,buying-signal,data-point,inferred,comm-style,approach-angle,data-quality,talking-points,sdr,enrichment,decision-maker -->
+Rules for every document a client or their team will read (review, roast, canvas, offer cards, instruction):
+
+1. **Open with «Словник цього документа»**: only the terms that actually appear in it, at most 10, each as «термін: що це простими словами». Like the definitions section of a contract.
+2. **No internal codes or letter scales in the text** (A/B/C, D L T E, BLEND numbers without words, Own/Shared/Generic, Z1.4, GATE 2.5, T1–T6). Write the meaning instead: «є цифра з клієнтом», not «A».
+3. **Use the plain form from the table below.** English stays only for tool names and for copy that ships in English (promises, hooks, subject lines). If the document is in another language, translate the plain form, never the internal term.
+4. **Do not score what cannot exist yet.** A block that depends on work not done (signal catalog, case studies, a previous step) gets «пропущено: спершу потрібно <що саме>», not a score.
+5. **Every section of a review opens with one concrete action** («до наступного дзвінка: …»), then at most five lines of why. No paragraph that only restates the framework.
+
+
+| Internal term (this skill) | Write for the reader | What it means |
+|---|---|---|
+| Tier 1 / Tier 2 / Tier 3, tier | тір: група компаній за розміром і чеком | усередині однієї ніші ділимо компанії за розміром і можливим чеком; від тіру залежить офер і скільки уваги даємо |
+| buying signal | ознака готовності купувати | факт про компанію, після якого розмова про вашу послугу доречна саме зараз. |
+| data point, state signal | факт про компанію (дата-поінт) | Факт з їхнього сайту чи вакансії, з якого відкриваємо лист; подія підказує, коли писати, а факт підказує, що сказати. |
+| [confirmed] / [inferred] | [підтверджено] / [припущення] | підтверджене має джерело; припущення перевіряємо питанням і не подаємо як факт |
+| comm_style formal / direct / technical | тон спілкування: офіційний · прямий · технічний | визначаємо за тим, як людина пише сама; галузь тут нічого не підказує |
+| recommended_approach: channel | angle | timing (direct / proof-led / question-led / value-first) | як заходити: канал, кут і коли | канал (пошта, LinkedIn), з чого почати (пряма пропозиція, кейс, питання, корисність) і коли писати |
+| data quality, fake-zero, lifetime-only, dark channel, snapshot | застереження щодо даних | Що в цифрах неповне чи хибне: нуль, який насправді не нуль, показники за весь час замість тижня, канал без даних. |
+| talking points | про що говорити | дві-чотири теми для першого дотику, кожна прив'язана до факту про цю компанію |
+| SDR, rep | менеджер першого контакту | людина, яка веде переписку від першої відповіді до зустрічі |
+| enrichment, enrich | дозбір даних | Пошук імен, посад і робочих пошт для компаній зі списку з кількох джерел. |
+| decision maker | ОПР (особа, що приймає рішення) | той, хто підписує: власник, операційний директор, керівник напряму |
+<!-- glossary:end -->
+
 ## Output format
 
 Lead with a **batch table** (one row per account, sorted T1→T3) for scanning, then the **full cards**
@@ -106,7 +133,7 @@ render inline.
 ```
 Prospect profiles — [list / hypothesis name] · [date] · [n accounts]
 
-[batch table: account | tier | the_signal | comm_style | approach | data_quality]
+[batch table with headings in words: company | priority group | trigger to open on | tone | channel, angle and timing | how reliable the data is]
 
 — T1/T2 full cards —
 [card per account]

@@ -215,3 +215,33 @@ The signals catalog itself stays in English (it's a reference).
 
 - `signals-catalog.md` — the canonical signals/data-points library to draw from
 - `examples/example-report.md` — one full sample report to anchor formatting expectations
+
+## Terms and plain-language output
+
+<!-- glossary:start terms=hypothesis-matrix,buying-signal,data-point,buying-committee,persona,tam,test-batch,hypo-5-factor,trivial-trigger,hypo-verdict,kill-optimize-scale,reply-rate,interest-rate,proof -->
+Rules for every document a client or their team will read (review, roast, canvas, offer cards, instruction):
+
+1. **Open with «Словник цього документа»**: only the terms that actually appear in it, at most 10, each as «термін: що це простими словами». Like the definitions section of a contract.
+2. **No internal codes or letter scales in the text** (A/B/C, D L T E, BLEND numbers without words, Own/Shared/Generic, Z1.4, GATE 2.5, T1–T6). Write the meaning instead: «є цифра з клієнтом», not «A».
+3. **Use the plain form from the table below.** English stays only for tool names and for copy that ships in English (promises, hooks, subject lines). If the document is in another language, translate the plain form, never the internal term.
+4. **Do not score what cannot exist yet.** A block that depends on work not done (signal catalog, case studies, a previous step) gets «пропущено: спершу потрібно <що саме>», not a score.
+5. **Every section of a review opens with one concrete action** («до наступного дзвінка: …»), then at most five lines of why. No paragraph that only restates the framework.
+
+
+| Internal term (this skill) | Write for the reader | What it means |
+|---|---|---|
+| hypothesis matrix | таблиця гіпотез | список варіантів «кому · з чим · через який канал» для перевірки в розсилках. |
+| buying signal | ознака готовності купувати | факт про компанію, після якого розмова про вашу послугу доречна саме зараз. |
+| data point, state signal | факт про компанію (дата-поінт) | Факт з їхнього сайту чи вакансії, з якого відкриваємо лист; подія підказує, коли писати, а факт підказує, що сказати. |
+| DMU, buying committee, buying process | хто бере участь у рішенні і як воно ухвалюється | люди з боку клієнта, які впливають на покупку, і кроки, через які проходить угода. |
+| persona, persona document | портрет покупця | опис типової людини, що купує: посада, задачі, болі, заперечення, де її шукати; будуємо лише з реальних даних. |
+| TAM, TAM reuse | весь ринок (TAM) | Усі компанії, що підходять під ICP; раз на квартал проходимо цей список знову з новим аргументом. |
+| test batch | розмір першої хвилі | скільки компаній беремо в перший тест, зазвичай 200-500 |
+| 5-factor score: Easy to scrape · Scaling · Clear & expensive problem · Offer relevance · Trivial trigger | оцінка гіпотези за п'ятьма критеріями | легко зібрати список · чи вистачить ринку · гострота і ціна проблеми · чи є в нас кейс · наскільки сигнал однозначний |
+| trivial trigger | однозначний сигнал | подія, яка майже завжди означає, що проблема в компанії є |
+| Run first / Worth testing / Skip or rework | запускаємо першою · варто тестувати · відкладаємо або переробляємо | рішення по гіпотезі за підсумковим балом |
+| Kill / Optimize / Scale | закриваємо · доводимо · масштабуємо | рішення після тесту на 200+ компаніях за часткою відповідей і часткою зацікавлених |
+| reply rate | частка відповідей | скільки людей з тих, кому написали, відповіли. |
+| interest rate, interested | частка зацікавлених відповідей | Яка частка відповідей показує справжнє бажання продовжити розмову; автовідповіді й відмови сюди не входять. |
+| proof, [TODO: need case] | доказ | кейс, цифра або відгук, що підтверджують обіцянку; якщо його немає, пишемо «потрібен кейс», а не вигадуємо |
+<!-- glossary:end -->

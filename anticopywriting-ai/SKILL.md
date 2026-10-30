@@ -285,3 +285,13 @@ python3 .../scripts/detect.py post.md --lang uk --mode post --pretty
 
 - Базується на [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) (WikiProject AI Cleanup).
 - Адаптація під українську й англійську: пристосовано лексику, додано специфічні маркери (канцелярит, ялинки vs smart quotes, локальні ШІ-кліше).
+
+## Terms and plain-language output
+
+<!-- glossary:start terms= mode=copy -->
+Rules for every text a reader will see (post, email, message, page copy):
+
+1. **No internal codes or letter scales** (A/B/C, D L T E, scores without words, framework codes). Write the meaning.
+2. **Use the plain form from the table below.** English stays only for tool names and for copy that ships in English. A term the reader may not know gets explained in the same sentence or replaced.
+3. **Any review, audit or report this skill produces for the team or the client** follows the document rules: open it with «Словник цього документа» (terms used, at most 10), do not score what depends on unfinished work, and open each section with one concrete action.
+<!-- glossary:end -->

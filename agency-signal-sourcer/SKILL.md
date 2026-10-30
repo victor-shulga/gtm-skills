@@ -111,3 +111,34 @@ hypothesis-builder                               · gtm-plays.md → the signal-
 2. Apply the agency adaptation rules — strip PLG/enterprise noise, flag US-only/GDPR tools, demote enterprise pricing.
 3. For any signal: give **detect (tool + Clay credits) → freshness window → score → GTM play**, in that order.
 4. Quote benchmarks as directional only; never promise 35–40%.
+
+## Terms and plain-language output
+
+<!-- glossary:start terms=buying-signal,data-point,freshness-window,heat-tier,sla,recency-multiplier,signal-stacking,signal-play,plg,intent-data,visitor-id,tam,bound-framing,champion-job-change,decision-maker -->
+Rules for every document a client or their team will read (review, roast, canvas, offer cards, instruction):
+
+1. **Open with «Словник цього документа»**: only the terms that actually appear in it, at most 10, each as «термін: що це простими словами». Like the definitions section of a contract.
+2. **No internal codes or letter scales in the text** (A/B/C, D L T E, BLEND numbers without words, Own/Shared/Generic, Z1.4, GATE 2.5, T1–T6). Write the meaning instead: «є цифра з клієнтом», not «A».
+3. **Use the plain form from the table below.** English stays only for tool names and for copy that ships in English (promises, hooks, subject lines). If the document is in another language, translate the plain form, never the internal term.
+4. **Do not score what cannot exist yet.** A block that depends on work not done (signal catalog, case studies, a previous step) gets «пропущено: спершу потрібно <що саме>», not a score.
+5. **Every section of a review opens with one concrete action** («до наступного дзвінка: …»), then at most five lines of why. No paragraph that only restates the framework.
+
+
+| Internal term (this skill) | Write for the reader | What it means |
+|---|---|---|
+| buying signal | ознака готовності купувати | факт про компанію, після якого розмова про вашу послугу доречна саме зараз. |
+| data point, state signal | факт про компанію (дата-поінт) | Факт з їхнього сайту чи вакансії, з якого відкриваємо лист; подія підказує, коли писати, а факт підказує, що сказати. |
+| freshness window, expiry window, decay | термін свіжості сигналу | скільки днів сигнал ще дає привід писати; потім він стає просто фактом |
+| Hot / Warm / Cool / Drop, band | гарячий · теплий · прохолодний · відкласти | наскільки терміново писати компанії за сукупністю відповідності і сигналу |
+| SLA (marketing ↔ sales) | домовленість між маркетингом і продажами | хто передає ліда, у якому вигляді і за скільки годин на нього реагують. |
+| recency multiplier | поправка на свіжість | свіжий сигнал важить більше за давній, тому бал множимо на коефіцієнт за віком сигналу |
+| multi-signal stacking | збіг кількох сигналів | коли в компанії одночасно кілька сигналів, шанс угоди вищий і пріоритет піднімаємо |
+| signal-to-action play, GTM play | сценарій дій на сигнал | хто, що і в який день робить після того, як спрацював сигнал |
+| PLG, product-led signals | сигнали для продуктових компаній | сплески використання продукту, пробні реєстрації; сервісній компанії вони майже не підходять |
+| intent data | дані про намір купувати | сигнали, що компанія зараз шукає таку послугу: пошукові запити, відвідування сторінок, вакансії. |
+| visitor tracking, website de-anonymization | розпізнавання відвідувачів сайту | визначає, яка компанія чи людина була на сайті; рівень людини дозволений лише в США, у ЄС тільки рівень компанії |
+| TAM, TAM reuse | весь ринок (TAM) | Усі компанії, що підходять під ICP; раз на квартал проходимо цей список знову з новим аргументом. |
+| INBOUND / POSTBOUND / BRIDGEBOUND / OUTBOUND | звідки прийшов сигнал | чотири типи: людина прийшла сама, відреагувала на ваш контент, є спільний контакт, або ви пишете першими |
+| champion job change | ваш прихильник перейшов в іншу компанію | людина, яка вже працювала з вами, на новому місці часто знову купує те саме |
+| decision maker | ОПР (особа, що приймає рішення) | той, хто підписує: власник, операційний директор, керівник напряму |
+<!-- glossary:end -->
