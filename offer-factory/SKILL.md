@@ -40,11 +40,11 @@ Generate ~12–15 one-line combos: `We help [ICP] achieve [outcome] via [mechani
 Score every combo, keep the top 5–10:
 ```
 Value  = geomean(Dream, Likelihood, Time, Effort)      # each 1–10; Time/Effort: 10 = fast / low friction
-Signal = geomean(MarketSize, TargetingEase, HookClarity)  # each 1–10
-BLEND  = 0.6 * Value + 0.4 * Signal
+Testability = geomean(MarketSize, TargetingEase, HookClarity)  # each 1–10
+BLEND  = 0.6 * Value + 0.4 * Testability
 ```
 - **Value** = Hormozi value equation (dream × likelihood, divided by delay & effort — encoded as a geometric mean so it stays 1–10).
-- **Signal** = how fast outbound can produce a signal (is the market findable, targetable, and is the hook punchy).
+- **Testability** = how fast cold outreach can prove or kill the offer (is the market findable, targetable, and is the hook punchy). Not to be confused with buying signals (signal catalog, hypo-generator): this score needs no signal catalog.
 - Curate the kept set for **axis diversity** — don't ship 5 variants of the same ICP×pain. Cover different ICPs, pains, and mechanisms.
 
 ### Phase 5 — Expand winners into Standard cards
@@ -90,10 +90,10 @@ For high-ticket offers with a complex/long sales cycle, **never test the full co
 - `Entry rung` — paid pilot / diagnostic / scoped sprint, priced in **discretionary budget ($5–20K)** so it skips CFO approval. THIS is the cold-outbound offer.
 - `Core contract` — the big engagement, sold on **expand** after the rung delivers.
 For high-ticket test KPI = **booked discovery / pilot accepted**, NOT closed deal (cycle is 60–180 days). Add a `risk-reversal` (refund-if-criteria-not-met, milestone/phased) and a `multi-thread map` (who else is in the deal: CFO→ROI, IT→security/architecture, procurement→SLA, ops→timeline).
-The Signal score naturally penalizes big commitments — that's the math telling you to lead with the rung.
+The Testability score naturally penalizes big commitments — that's the math telling you to lead with the rung.
 
-### Low-signal rescue
-When an offer has high **Value** but low **Signal** (a good offer drowning in a commoditized channel, e.g. generic outstaff), don't fix the offer — fix the **wedge on the channel**:
+### Low-testability rescue
+When an offer has high **Value** but low **Testability** (a good offer drowning in a commoditized channel, e.g. generic outstaff), don't fix the offer — fix the **wedge on the channel**:
 1. narrow the ICP / talent niche (e.g. "LLM engineers" not "developers"),
 2. add risk-reversal (paid trial week),
 3. make the CTA concretely small.
@@ -131,14 +131,14 @@ Rules for every document a client or their team will read (review, roast, canvas
 | offer-bet, bet | варіант оферу на тест | окрема ставка: інша комбінація «кому · який результат · як робимо», а не той самий офер іншими словами |
 | axes (ICP / pain / mechanism) | три виміри оферу: кому, який результат, як робимо | щоб варіанти справді відрізнялися, між ними міняється хоча б один вимір |
 | Value score, D L T E (Dream, Likelihood, Time, Effort) | оцінка цінності для клієнта | наскільки бажаний результат, наскільки клієнт вірить, що він буде, як швидко і скільки зусиль від нього; кожне від 1 до 10 |
-| Signal score (MarketSize, TargetingEase, HookClarity) | оцінка, як швидко офер перевіримо в холодних листах | чи великий ринок, чи легко знайти цих людей і чи зрозуміло з першого рядка, про що офер; кожне від 1 до 10 |
+| Testability score (MarketSize, TargetingEase, HookClarity), formerly Signal | оцінка, як швидко офер перевіримо в холодних листах | чи великий ринок, чи легко знайти цих людей і чи зрозуміло з першого рядка, про що офер; кожне від 1 до 10 |
 | BLEND | підсумкова оцінка варіанту | 60% цінність плюс 40% швидкість перевірки; за нею сортуємо варіанти |
 | test card, offer-factory card | картка тесту оферу | одна сторінка на один варіант: обіцянка, кому пишемо, доказ, перший лист, скільки контактів і за яким результатом лишаємо чи прибираємо офер |
 | kill / keep threshold, N | поріг «лишаємо чи прибираємо» | на 40–60 контактів за 2 тижні: від 10% позитивних відповідей лишаємо, менше 5% прибираємо, між ними міняємо сигнал або посаду |
 | positive reply rate | частка позитивних відповідей | скільки з тих, кому написали, відповіли з інтересом, а не «відпишіть мене» |
 | risk reversal, guarantee | гарантія, що знімає ризик | що клієнт отримає, якщо результату не буде: повернення грошей, безкоштовне продовження, оплата за етапами |
 | multi-thread map | карта людей в угоді | хто ще впливає на рішення і що кожному показати: фінансисту окупність, технічному безпеку, закупівлям умови |
-| low-signal rescue, wedge | звуження під канал | коли офер добрий, але тоне серед схожих: звужуємо нішу, додаємо гарантію, робимо прохання меншим |
+| low-testability rescue, wedge | звуження під канал | коли офер добрий, але тоне серед схожих: звужуємо нішу, додаємо гарантію, робимо прохання меншим |
 | entry rung, cold-facing rung | вхідний офер для холодних листів | офер, з яким ідемо до людей, що вас не знають: невеликий за ціною й ризиком (платний пілот, діагностика, короткий спринт) |
 | expand, land-and-expand | допродаж після першої роботи | дорожчі сходинки не пропонуємо холодним людям, їх продаємо клієнту, який уже отримав результат на вхідному офері |
 | hook, cold hook | гачок | перший рядок листа, через який людина читає далі |
