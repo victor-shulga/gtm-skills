@@ -65,10 +65,10 @@ For each kept offer (UA reasoning, EN promise + hook):
 
 ### Phase 6 — Test design (built into every card)
 ```
-Test:  N = 40–60 targeted leads
+Test:  N = 300 targeted prospects per hypothesis (below 300 = "not tested": no keep/kill call yet)
        metric: positive reply rate (sprint/trial → also booked calls)
        keep ≥ 10% / kill < 5%  (5–10% = keep angle, swap signal or persona)
-       window: 2 weeks / cohort
+       window: 300 ÷ weekly new-prospect capacity (from the capacity plan)
 ```
 
 ### Phase 7 — Output
@@ -135,7 +135,7 @@ Rules for every document a client or their team will read (review, roast, canvas
 | Testability score (MarketSize, TargetingEase, HookClarity), formerly Signal | оцінка, як швидко офер перевіримо в холодних листах | чи великий ринок, чи легко знайти цих людей і чи зрозуміло з першого рядка, про що офер; кожне від 1 до 10 |
 | BLEND | підсумкова оцінка варіанту | 60% цінність плюс 40% швидкість перевірки; за нею сортуємо варіанти |
 | test card, offer-factory card | картка тесту оферу | одна сторінка на один варіант: обіцянка, кому пишемо, доказ, перший лист, скільки контактів і за яким результатом лишаємо чи прибираємо офер |
-| kill / keep threshold, N | поріг «лишаємо чи прибираємо» | на 40–60 контактів за 2 тижні: від 10% позитивних відповідей лишаємо, менше 5% прибираємо, між ними міняємо сигнал або посаду |
+| kill / keep threshold, N | поріг «лишаємо чи прибираємо» | на 300 контактів на гіпотезу (менше = «не перевірено», рішення не ухвалюємо): від 10% позитивних відповідей лишаємо, менше 5% прибираємо, між ними міняємо сигнал або посаду; строк = 300 ÷ нових контактів на тиждень |
 | positive reply rate | частка позитивних відповідей | скільки з тих, кому написали, відповіли з інтересом, а не «відпишіть мене» |
 | risk reversal, guarantee | гарантія, що знімає ризик | що клієнт отримає, якщо результату не буде: повернення грошей, безкоштовне продовження, оплата за етапами |
 | multi-thread map | карта людей в угоді | хто ще впливає на рішення і що кожному показати: фінансисту окупність, технічному безпеку, закупівлям умови |
